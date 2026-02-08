@@ -8,28 +8,28 @@ httpx
 # Astrology (Kerykeion + Swiss Ephemeris)
 kerykeion>=4.0.0
 pyswisseph>=2.10.3.2
-pytz==2024.2
+pytz>=2024.0
 
 # Human Design Calculations
-numpy==2.1.2
-pandas==2.2.3
-python_dateutil==2.9.0.post0
+numpy>=1.24.0,<2.1
+pandas>=2.0.0
+python_dateutil>=2.8.0
 
 # Geolocation & Timezone
-geopy==2.4.1
-timezonefinder>=8.2.0
+geopy>=2.3.0
+timezonefinder>=6.0.0
 
 # Chart Rendering
-matplotlib
-svgpath2mpl
-Pillow
-cairosvg  # For PNG/PDF conversion of Kerykeion charts
+matplotlib>=3.5.0
+svgpath2mpl>=1.0.0
+Pillow>=9.0.0
+cairosvg>=2.5.0  # For PNG/PDF conversion of Kerykeion charts
 
 # Development & Testing
 ruff
 pytest
-ipython==8.12.3
-tqdm==4.66.5
+ipython>=8.0.0
+tqdm>=4.60.0
 
 # Python 3.10 compatibility
 tomli; python_version < "3.11"
