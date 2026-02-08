@@ -1,4 +1,4 @@
-import humandesign.features as hd
+from .. import features as hd
 from .. import hd_constants
 import numpy as np
 from datetime import datetime
