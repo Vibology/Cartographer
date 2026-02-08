@@ -37,11 +37,7 @@ def render_natal_chart(
         minute=minute,
         lat=lat,
         lng=lng,
-        tz_str=tz_str,
-        city="",
-        nation="",
-        zodiac_type="Tropic",
-        online=False
+        tz_str=tz_str
     )
 
     # Generate SVG chart
