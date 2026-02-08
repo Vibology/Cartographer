@@ -16,17 +16,34 @@ def render_natal_chart(
     lng: float,
     tz_str: str,
     output_format: str = "png",
-    house_system: str = "P"
+    house_system: str = "P",
+    city: str = None
 ):
     """
     Render natal chart visualization using Kerykeion.
 
     Args:
         output_format: "png", "svg", or "pdf"
+        city: Optional city name (will attempt reverse geocode if not provided)
 
     Returns:
         Tuple of (image_bytes, media_type)
     """
+    # Get city name if not provided
+    if not city:
+        try:
+            from geopy.geocoders import Nominatim
+            geolocator = Nominatim(user_agent="cartographer")
+            location = geolocator.reverse(f"{lat}, {lng}", language='en')
+            if location:
+                # Extract city from address
+                address = location.raw.get('address', {})
+                city = address.get('city') or address.get('town') or address.get('village') or f"{lat:.4f}, {lng:.4f}"
+            else:
+                city = f"{lat:.4f}, {lng:.4f}"
+        except:
+            city = f"{lat:.4f}, {lng:.4f}"
+
     # Create AstrologicalSubject
     subject = AstrologicalSubject(
         name=name,
@@ -37,7 +54,8 @@ def render_natal_chart(
         minute=minute,
         lat=lat,
         lng=lng,
-        tz_str=tz_str
+        tz_str=tz_str,
+        city=city
     )
 
     # Generate SVG chart

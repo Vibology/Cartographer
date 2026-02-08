@@ -59,7 +59,8 @@ async def generate_chart(
     lng: float = Query(..., description="Longitude"),
     tz_str: str = Query(..., description="Timezone (e.g., 'America/New_York')"),
     format: ChartFormat = Query(ChartFormat.PNG, description="Output format"),
-    house_system: str = Query("P", description="House system (P=Placidus, W=Whole Sign, etc.)")
+    house_system: str = Query("P", description="House system (P=Placidus, W=Whole Sign, etc.)"),
+    city: str = Query(None, description="City name (optional, will reverse geocode if not provided)")
 ):
     """
     Generate natal chart visualization.
@@ -78,7 +79,8 @@ async def generate_chart(
             lng=lng,
             tz_str=tz_str,
             output_format=format.value,
-            house_system=house_system
+            house_system=house_system,
+            city=city
         )
         return Response(content=image_data, media_type=media_type)
     except Exception as e:
