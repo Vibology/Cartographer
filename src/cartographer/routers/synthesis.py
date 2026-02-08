@@ -7,7 +7,7 @@ from typing import Optional
 
 from ..schemas.synthesis import SynthesisRequest, SynthesisResponse
 from ..services.astro_calculator import calculate_natal_chart
-from ..services import hd_calculator
+from .. import features as hd
 
 router = APIRouter()
 
@@ -36,19 +36,24 @@ async def synthesize_complete_chart(request: SynthesisRequest):
         )
 
         # Calculate Human Design
-        # Import HD calculation function from existing codebase
-        from ..services.hd_calculator import calculate_hd_chart
+        from ..services.geolocation import get_latitude_longitude
 
-        hd_data = calculate_hd_chart(
+        # Use place for geocoding if provided, otherwise use lat/lng directly
+        if hasattr(request, 'place') and request.place:
+            coords = get_latitude_longitude(request.place)
+            lat, lng = coords[0], coords[1]
+        else:
+            lat, lng = request.lat, request.lng
+
+        hd_data = hd.get_bodygraph(
             name=request.name,
             year=request.year,
             month=request.month,
             day=request.day,
             hour=request.hour,
             minute=request.minute,
-            place=request.place if hasattr(request, 'place') else None,
-            lat=request.lat,
-            lng=request.lng,
+            lat=lat,
+            lng=lng,
             tz_str=request.tz_str
         )
 
@@ -104,17 +109,27 @@ async def generate_both_charts(request: SynthesisRequest):
         )
 
         # Generate HD bodygraph
-        bodygraph_svg = render_bodygraph(
+        from ..services.chart_renderer import generate_chart_svg
+        from ..services.geolocation import get_latitude_longitude
+
+        if hasattr(request, 'place') and request.place:
+            coords = get_latitude_longitude(request.place)
+            lat, lng = coords[0], coords[1]
+        else:
+            lat, lng = request.lat, request.lng
+
+        hd_chart_data = hd.get_bodygraph(
             name=request.name,
             year=request.year,
             month=request.month,
             day=request.day,
             hour=request.hour,
             minute=request.minute,
-            lat=request.lat,
-            lng=request.lng,
+            lat=lat,
+            lng=lng,
             tz_str=request.tz_str
         )
+        bodygraph_svg = generate_chart_svg(hd_chart_data)
 
         return {
             "astrology_chart": {
