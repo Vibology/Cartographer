@@ -1,5 +1,5 @@
 """
-Astrology Calculation Service - Kerykeion wrapper
+Astrology Calculation Service - Kerykeion v5 wrapper
 """
 
 from kerykeion import AstrologicalSubject
@@ -19,7 +19,7 @@ def calculate_natal_chart(
     house_system: str = "P"
 ):
     """
-    Calculate complete natal chart using Kerykeion.
+    Calculate complete natal chart using Kerykeion v5.
 
     Returns dictionary with planets, houses, aspects, etc.
     """
@@ -33,41 +33,59 @@ def calculate_natal_chart(
         minute=minute,
         lat=lat,
         lng=lng,
-        tz_str=tz_str,
-        city="",  # Not needed if we have lat/lng
-        nation="",
-        zodiac_type="Tropic",
-        online=False  # Use local ephemeris
+        tz_str=tz_str
     )
 
-    # Build response
+    # List of planets to extract
+    planet_names = [
+        'sun', 'moon', 'mercury', 'venus', 'mars',
+        'jupiter', 'saturn', 'uranus', 'neptune', 'pluto',
+        'mean_north_lunar_node', 'chiron'
+    ]
+
+    # Extract planet data
     planets_data = []
-    for planet in subject.planets_list:
-        planets_data.append({
-            "name": planet["name"],
-            "sign": planet["sign"],
-            "longitude": planet["position"],
-            "latitude": planet.get("latitude", 0.0),
-            "speed": planet.get("speed", 0.0),
-            "retrograde": planet.get("retrograde", False),
-            "house": planet.get("house", 0)
-        })
+    for planet_name in planet_names:
+        if hasattr(subject, planet_name):
+            planet = getattr(subject, planet_name)
+            if planet:  # Some might be None
+                planets_data.append({
+                    "name": planet.name,
+                    "sign": planet.sign,
+                    "longitude": planet.abs_pos,  # Absolute position 0-360
+                    "latitude": 0.0,  # v5 doesn't expose latitude easily
+                    "speed": getattr(planet, 'speed', 0.0),
+                    "retrograde": planet.retrograde,
+                    "house": int(planet.house.replace('_House', '').replace('First', '1').replace('Second', '2').replace('Third', '3').replace('Fourth', '4').replace('Fifth', '5').replace('Sixth', '6').replace('Seventh', '7').replace('Eighth', '8').replace('Ninth', '9').replace('Tenth', '10').replace('Eleventh', '11').replace('Twelfth', '12')) if planet.house else 0
+                })
 
+    # Extract house cusps
     houses_data = {}
-    for i, cusp in enumerate(subject.houses_list, 1):
-        houses_data[f"house_{i}"] = cusp["position"]
+    house_names = [
+        'first_house', 'second_house', 'third_house', 'fourth_house',
+        'fifth_house', 'sixth_house', 'seventh_house', 'eighth_house',
+        'ninth_house', 'tenth_house', 'eleventh_house', 'twelfth_house'
+    ]
 
+    for i, house_name in enumerate(house_names, 1):
+        if hasattr(subject, house_name):
+            house = getattr(subject, house_name)
+            if house:
+                houses_data[f"house_{i}"] = house.abs_pos
+
+    # Extract aspects (if available)
     aspects_data = []
-    for aspect in subject.aspects_list:
-        aspects_data.append({
-            "planet1": aspect["p1_name"],
-            "planet2": aspect["p2_name"],
-            "aspect": aspect["aspect"],
-            "orb": aspect["orbit"],
-            "applying": aspect.get("applying", False)
-        })
+    if hasattr(subject, 'aspects_list'):
+        for aspect in subject.aspects_list:
+            aspects_data.append({
+                "planet1": aspect.get('p1_name', ''),
+                "planet2": aspect.get('p2_name', ''),
+                "aspect": aspect.get('aspect', ''),
+                "orb": aspect.get('orbit', 0.0),
+                "applying": aspect.get('applying', False)
+            })
 
-    # Element and modality distribution
+    # Calculate element and modality distribution
     elements = {"Fire": 0, "Earth": 0, "Air": 0, "Water": 0}
     modalities = {"Cardinal": 0, "Fixed": 0, "Mutable": 0}
 
@@ -85,11 +103,22 @@ def calculate_natal_chart(
     }
 
     for planet in planets_data:
-        sign_abbr = planet["sign"][:3]
-        if sign_abbr in element_map:
-            elements[element_map[sign_abbr]] += 1
-        if sign_abbr in modality_map:
-            modalities[modality_map[sign_abbr]] += 1
+        sign = planet["sign"]
+        if sign in element_map:
+            elements[element_map[sign]] += 1
+        if sign in modality_map:
+            modalities[modality_map[sign]] += 1
+
+    # Lunar phase
+    lunar_phase_data = {
+        "phase": "Unknown",
+        "illumination": 0
+    }
+    if hasattr(subject, 'lunar_phase'):
+        lunar_phase_data = {
+            "phase": subject.lunar_phase.get('moon_phase', 'Unknown'),
+            "illumination": subject.lunar_phase.get('illumination', 0)
+        }
 
     return {
         "name": name,
@@ -101,10 +130,7 @@ def calculate_natal_chart(
         "planets": planets_data,
         "houses": houses_data,
         "aspects": aspects_data,
-        "lunar_phase": {
-            "phase": subject.lunar_phase.get("moon_phase", "Unknown"),
-            "illumination": subject.lunar_phase.get("illumination", 0)
-        },
+        "lunar_phase": lunar_phase_data,
         "elements": elements,
         "modalities": modalities
     }
@@ -122,21 +148,25 @@ def calculate_current_transits(lat: float, lng: float, tz_str: str):
         minute=now.minute,
         lat=lat,
         lng=lng,
-        tz_str=tz_str,
-        city="",
-        nation="",
-        zodiac_type="Tropic",
-        online=False
+        tz_str=tz_str
     )
 
+    planet_names = [
+        'sun', 'moon', 'mercury', 'venus', 'mars',
+        'jupiter', 'saturn', 'uranus', 'neptune', 'pluto'
+    ]
+
     transits = []
-    for planet in subject.planets_list:
-        transits.append({
-            "planet": planet["name"],
-            "sign": planet["sign"],
-            "longitude": planet["position"],
-            "retrograde": planet.get("retrograde", False)
-        })
+    for planet_name in planet_names:
+        if hasattr(subject, planet_name):
+            planet = getattr(subject, planet_name)
+            if planet:
+                transits.append({
+                    "planet": planet.name,
+                    "sign": planet.sign,
+                    "longitude": planet.abs_pos,
+                    "retrograde": planet.retrograde
+                })
 
     return {
         "timestamp": now.isoformat(),
