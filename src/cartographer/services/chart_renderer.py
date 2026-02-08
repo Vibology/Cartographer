@@ -33,7 +33,7 @@ from PIL import Image
 def setup_fonts():
     """Register Cabin fonts with matplotlib."""
     try:
-        font_dir = importlib.resources.files("humandesign.data").joinpath("fonts")
+        font_dir = importlib.resources.files("src.cartographer.data").joinpath("fonts")
         for ttf in ['Cabin-Regular.ttf', 'Cabin-Bold.ttf', 'Cabin-Medium.ttf', 'Cabin-SemiBold.ttf']:
             font_path = font_dir.joinpath(ttf)
             if font_path.is_file():
@@ -297,7 +297,7 @@ def ensure_chart_data_complete(chart_data):
 def load_json_layout():
     """Loads the SVG layout data from layout_data.json."""
     try:
-        data_path = importlib.resources.files("humandesign.data").joinpath(LAYOUT_FILE)
+        data_path = importlib.resources.files("src.cartographer.data").joinpath(LAYOUT_FILE)
         with data_path.open("r", encoding="utf-8") as f:
             return json.load(f)
     except Exception as e:
@@ -314,7 +314,7 @@ def load_exaltations_data():
     if _exaltations_cache is not None:
         return _exaltations_cache
     try:
-        data_path = importlib.resources.files("humandesign.data").joinpath(EXALTATIONS_FILE)
+        data_path = importlib.resources.files("src.cartographer.data").joinpath(EXALTATIONS_FILE)
         with data_path.open("r", encoding="utf-8") as f:
             _exaltations_cache = json.load(f)
             return _exaltations_cache
@@ -378,7 +378,7 @@ def get_planet_dignity(planet_name, gate, line, exaltations_data, harmonic_gate=
 
     Returns: 'exalted', 'detriment', 'juxtaposed', or None
     """
-    from humandesign.features.dignity import calculate_dignity
+    from ..features.dignity import calculate_dignity
 
     if not exaltations_data or gate == '–' or line == '–':
         return None
