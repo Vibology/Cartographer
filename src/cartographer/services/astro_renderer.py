@@ -29,7 +29,8 @@ def render_natal_chart(
     Returns:
         Tuple of (image_bytes, media_type)
     """
-    # Get city name if not provided
+    # Get city name and nation if not provided
+    nation = "US"  # Default to US
     if not city:
         try:
             from geopy.geocoders import Nominatim
@@ -41,6 +42,9 @@ def render_natal_chart(
                 city_name = address.get('city') or address.get('town') or address.get('village')
                 state_code = address.get('ISO3166-2-lvl4', '').split('-')[-1] if 'ISO3166-2-lvl4' in address else address.get('state')
                 country_code = address.get('country_code', '').upper()
+
+                # Set nation from geocoding
+                nation = country_code if country_code else "US"
 
                 # Build location string (City, State for US; City, Country otherwise)
                 if country_code == 'US' and city_name and state_code:
@@ -66,7 +70,8 @@ def render_natal_chart(
         lat=lat,
         lng=lng,
         tz_str=tz_str,
-        city=city
+        city=city,
+        nation=nation
     )
 
     # Generate SVG chart
