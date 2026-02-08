@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.pyc
+*.log
+.venv/
+venv/
+*.egg-info/
+
+# Environment variables
+.env
+.env.*
+
+# IDE and editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+
+# Test and build artifacts
+.pytest_cache/
+htmlcov/
+.coverage
+.coverage.*
+
+# Cache and output
+cache/
+test_output/
+reports/
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+*.swp
+*.swo

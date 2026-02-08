@@ -1,0 +1,35 @@
+# Core Web Framework
+fastapi>=0.115.0
+uvicorn==0.27.1
+pydantic>=2.7.0
+python-dotenv
+httpx
+
+# Astrology (Kerykeion + Swiss Ephemeris)
+kerykeion>=4.0.0
+pyswisseph>=2.10.3.2
+pytz==2024.2
+
+# Human Design Calculations
+numpy==2.1.2
+pandas==2.2.3
+python_dateutil==2.9.0.post0
+
+# Geolocation & Timezone
+geopy==2.4.1
+timezonefinder>=8.2.0
+
+# Chart Rendering
+matplotlib
+svgpath2mpl
+Pillow
+cairosvg  # For PNG/PDF conversion of Kerykeion charts
+
+# Development & Testing
+ruff
+pytest
+ipython==8.12.3
+tqdm==4.66.5
+
+# Python 3.10 compatibility
+tomli; python_version < "3.11"

@@ -1,0 +1,3950 @@
+{
+  "1": {
+    "1": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Uranus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Mars"
+      ],
+      "detriment_planets": [
+        "Earth"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Earth"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Mars"
+      ],
+      "detriment_planets": [
+        "Uranus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Earth"
+      ],
+      "detriment_planets": [
+        "Pluto"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "2": {
+    "1": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Saturn"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Uranus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Mercury"
+      ],
+      "detriment_planets": [
+        "Earth"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Mercury"
+      ],
+      "detriment_planets": [
+        "Saturn"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "3": {
+    "1": {
+      "exaltation_planets": [
+        "Earth"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Mars"
+      ],
+      "detriment_planets": [
+        "Uranus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Pluto"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Neptune"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Mars"
+      ],
+      "detriment_planets": [
+        "Earth"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Pluto"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "4": {
+    "1": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Earth"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Pluto"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Saturn"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Pluto"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Mercury"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "5": {
+    "1": {
+      "exaltation_planets": [
+        "Mars"
+      ],
+      "detriment_planets": [
+        "Earth"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Pluto"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Neptune"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Uranus"
+      ],
+      "detriment_planets": [
+        "Sun"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Pluto"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Neptune"
+      ],
+      "detriment_planets": [],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "6": {
+    "1": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Neptune"
+      ],
+      "detriment_planets": [
+        "Pluto"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Pluto"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Mercury"
+      ],
+      "detriment_planets": [
+        "Venus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "7": {
+    "1": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Neptune"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Uranus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Neptune"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Mercury"
+      ],
+      "detriment_planets": [
+        "Uranus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "8": {
+    "1": {
+      "exaltation_planets": [
+        "Neptune"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Earth"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Saturn"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Sun"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Pluto"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "9": {
+    "1": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Earth"
+      ],
+      "detriment_planets": [
+        "Sun"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Earth"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Pluto"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "10": {
+    "1": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Mercury"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Earth"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Uranus"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Saturn"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "11": {
+    "1": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Neptune"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Venus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Sun"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Neptune"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "12": {
+    "1": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Neptune"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Earth"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Earth"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "13": {
+    "1": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Sun"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Earth"
+      ],
+      "detriment_planets": [
+        "Venus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Venus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Neptune"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Mars"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "14": {
+    "1": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Earth"
+      ],
+      "detriment_planets": [
+        "Neptune"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Venus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Earth"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "15": {
+    "1": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Earth"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Earth"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Saturn"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Pluto"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Venus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "16": {
+    "1": {
+      "exaltation_planets": [
+        "Earth"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Neptune"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "17": {
+    "1": {
+      "exaltation_planets": [
+        "Mars"
+      ],
+      "detriment_planets": [
+        "Venus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Earth"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Uranus"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "18": {
+    "1": {
+      "exaltation_planets": [
+        "Earth"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Neptune"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Earth"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Saturn"
+      ],
+      "detriment_planets": [
+        "Uranus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Mars"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "19": {
+    "1": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Mars"
+      ],
+      "detriment_planets": [
+        "Venus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Earth"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "20": {
+    "1": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Earth"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Saturn"
+      ],
+      "detriment_planets": [
+        "Uranus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "21": {
+    "1": {
+      "exaltation_planets": [
+        "Mars"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Mars"
+      ],
+      "detriment_planets": [
+        "Neptune"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Neptune"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Earth"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Pluto"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Venus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "22": {
+    "1": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Saturn"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Neptune"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "23": {
+    "1": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Pluto"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Earth"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Mars"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "24": {
+    "1": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Neptune"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Saturn"
+      ],
+      "detriment_planets": [
+        "Neptune"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Pluto"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "25": {
+    "1": {
+      "exaltation_planets": [
+        "Neptune"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Mercury"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Mars"
+      ],
+      "detriment_planets": [
+        "Pluto"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [],
+      "juxtaposition_planets": [],
+      "no_polarity": true
+    },
+    "5": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Earth"
+      ],
+      "detriment_planets": [
+        "Uranus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "26": {
+    "1": {
+      "exaltation_planets": [
+        "Neptune"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Pluto"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Saturn"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Saturn"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Mars"
+      ],
+      "detriment_planets": [
+        "Venus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "27": {
+    "1": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Earth"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Saturn"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Pluto"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "28": {
+    "1": {
+      "exaltation_planets": [
+        "Mars"
+      ],
+      "detriment_planets": [
+        "Venus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Saturn"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Sun"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Neptune"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "29": {
+    "1": {
+      "exaltation_planets": [
+        "Mars"
+      ],
+      "detriment_planets": [
+        "Neptune"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Venus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Mars"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Saturn"
+      ],
+      "detriment_planets": [
+        "Venus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Earth"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Mars"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "30": {
+    "1": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Pluto"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Mars"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "31": {
+    "1": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Earth"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "32": {
+    "1": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Mercury"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Saturn"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Neptune"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "33": {
+    "1": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Neptune"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Neptune"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "34": {
+    "1": {
+      "exaltation_planets": [
+        "Saturn"
+      ],
+      "detriment_planets": [
+        "Pluto"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Mars"
+      ],
+      "detriment_planets": [
+        "Venus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Saturn"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Mars"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Earth"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "35": {
+    "1": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Neptune"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Sun"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Mercury"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Saturn"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "36": {
+    "1": {
+      "exaltation_planets": [
+        "Mars"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Neptune"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Saturn"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "37": {
+    "1": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Saturn"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "38": {
+    "1": {
+      "exaltation_planets": [
+        "Neptune"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Earth"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Saturn"
+      ],
+      "detriment_planets": [
+        "Pluto"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Saturn"
+      ],
+      "detriment_planets": [
+        "Earth"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "39": {
+    "1": {
+      "exaltation_planets": [
+        "Mars"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Earth"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Sun"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Neptune"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "40": {
+    "1": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Uranus"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Uranus"
+      ],
+      "detriment_planets": [
+        "Earth"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Earth"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "41": {
+    "1": {
+      "exaltation_planets": [
+        "Neptune"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Saturn"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Saturn"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Earth"
+      ],
+      "detriment_planets": [
+        "Venus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Mars"
+      ],
+      "detriment_planets": [
+        "Venus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Saturn"
+      ],
+      "detriment_planets": [
+        "Pluto"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "42": {
+    "1": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Venus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Venus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Mars"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Venus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Venus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Saturn"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "43": {
+    "1": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Venus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Mercury"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Venus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "44": {
+    "1": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Venus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Mars"
+      ],
+      "detriment_planets": [
+        "Neptune"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Sun"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Uranus"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Earth"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "45": {
+    "1": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Uranus"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Neptune"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Uranus"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Uranus"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "46": {
+    "1": {
+      "exaltation_planets": [
+        "Neptune"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Earth"
+      ],
+      "detriment_planets": [
+        "Pluto"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Neptune"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Saturn"
+      ],
+      "detriment_planets": [
+        "Neptune"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "47": {
+    "1": {
+      "exaltation_planets": [
+        "Saturn"
+      ],
+      "detriment_planets": [
+        "Neptune"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Saturn"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Mercury"
+      ],
+      "detriment_planets": [],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [],
+      "detriment_planets": [
+        "Sun"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "48": {
+    "1": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Venus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Earth"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Mars"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "49": {
+    "1": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Sun"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Earth"
+      ],
+      "detriment_planets": [
+        "Pluto"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Neptune"
+      ],
+      "detriment_planets": [
+        "Pluto"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Neptune"
+      ],
+      "detriment_planets": [
+        "Saturn"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "50": {
+    "1": {
+      "exaltation_planets": [
+        "Mars"
+      ],
+      "detriment_planets": [
+        "Venus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Venus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Saturn"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Saturn"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "51": {
+    "1": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Venus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Mars"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Uranus"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Pluto"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "52": {
+    "1": {
+      "exaltation_planets": [
+        "Earth"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Saturn"
+      ],
+      "detriment_planets": [
+        "Venus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Saturn"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Earth"
+      ],
+      "detriment_planets": [
+        "Pluto"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Neptune"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "53": {
+    "1": {
+      "exaltation_planets": [
+        "Neptune"
+      ],
+      "detriment_planets": [
+        "Venus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Venus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Neptune"
+      ],
+      "detriment_planets": [
+        "Earth"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Pluto"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "54": {
+    "1": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Venus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Saturn"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Venus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [],
+      "detriment_planets": [],
+      "juxtaposition_planets": [],
+      "no_polarity": true
+    },
+    "5": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Saturn"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "55": {
+    "1": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Venus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Earth"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Saturn"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Uranus"
+      ],
+      "detriment_planets": [
+        "Sun"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Saturn"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "56": {
+    "1": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Uranus"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Venus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Uranus"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Pluto"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "57": {
+    "1": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Mercury"
+      ],
+      "detriment_planets": [],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Uranus"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "58": {
+    "1": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [],
+      "detriment_planets": [
+        "Uranus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Uranus"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Neptune"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Sun"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "59": {
+    "1": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Uranus"
+      ],
+      "detriment_planets": [
+        "Pluto"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Saturn"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Uranus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "60": {
+    "1": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Saturn"
+      ],
+      "detriment_planets": [
+        "Earth"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Saturn"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Mercury"
+      ],
+      "detriment_planets": [
+        "Venus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Neptune"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Uranus"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "61": {
+    "1": {
+      "exaltation_planets": [
+        "Neptune"
+      ],
+      "detriment_planets": [
+        "Venus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Saturn"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Saturn"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Pluto"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "62": {
+    "1": {
+      "exaltation_planets": [
+        "Neptune"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Saturn"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Uranus"
+      ],
+      "detriment_planets": [
+        "Venus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Pluto"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Neptune"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Saturn"
+      ],
+      "detriment_planets": [
+        "Mercury"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "63": {
+    "1": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Uranus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Saturn"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Mercury"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Sun"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Jupiter"
+      ],
+      "detriment_planets": [
+        "Pluto"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  },
+  "64": {
+    "1": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "2": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "3": {
+      "exaltation_planets": [
+        "Saturn"
+      ],
+      "detriment_planets": [
+        "Moon"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "4": {
+      "exaltation_planets": [
+        "Moon"
+      ],
+      "detriment_planets": [
+        "Mars"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "5": {
+      "exaltation_planets": [
+        "Venus"
+      ],
+      "detriment_planets": [
+        "Jupiter"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    },
+    "6": {
+      "exaltation_planets": [
+        "Mercury"
+      ],
+      "detriment_planets": [
+        "Venus"
+      ],
+      "juxtaposition_planets": [],
+      "no_polarity": false
+    }
+  }
+}
