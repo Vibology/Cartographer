@@ -206,7 +206,7 @@ def get_bodygraph_image(
             media_type = "image/jpeg"
         else:
             media_type = "image/png"
-            
+
         return Response(content=img_bytes, media_type=media_type)
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error generating chart image: {e}")

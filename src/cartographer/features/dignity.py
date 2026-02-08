@@ -97,7 +97,8 @@ def calculate_dignity(
     active_planet: str,
     harmonic_gate: Optional[int] = None,
     harmonic_planet: Optional[str] = None,
-    dignity_data: Optional[Dict] = None
+    dignity_data: Optional[Dict] = None,
+    gate_level_planets: Optional[List[str]] = None
 ) -> Dict[str, Optional[str]]:
     """
     Calculate dignity state using full IHDS algorithm.
@@ -106,8 +107,9 @@ def calculate_dignity(
     1. Check no_polarity flag
     2. Check juxtaposition - Scenario A (star glyph)
     3. Check juxtaposition - Scenario B (double fixing)
-    4. Check single polarity states (exalted/detriment)
-    5. Return neutral
+    4. Check gate-level fixing (exalted/detriment planet anywhere in gate)
+    5. Check single polarity states (exalted/detriment)
+    6. Return neutral
 
     Args:
         gate: Gate number
@@ -116,6 +118,7 @@ def calculate_dignity(
         harmonic_gate: Harmonic partner gate (if in a channel)
         harmonic_planet: Planet activating the harmonic gate
         dignity_data: Pre-loaded dignity data (loads if not provided)
+        gate_level_planets: List of all planets activating this gate (any line, both aspects)
 
     Returns:
         Dictionary with:
@@ -202,6 +205,47 @@ def calculate_dignity(
             "harmonic_trigger": harmonic_planet,
             "details": "Double fixing (opposite polarities)"
         }
+
+    # Step 3.5: Check Gate-Level Fixing
+    # If an exalted/detriment planet is present ANYWHERE in this gate (any line, either aspect),
+    # it triggers that polarity for this activation
+    gate_level_exalted = False
+    gate_level_detriment = False
+    gate_level_trigger = None
+
+    if gate_level_planets:
+        for planet in gate_level_planets:
+            planet = normalize_planet_name(planet)
+            if planet in exaltation_planets:
+                gate_level_exalted = True
+                gate_level_trigger = planet
+            if planet in detriment_planets:
+                gate_level_detriment = True
+                if not gate_level_trigger:  # Prefer exaltation trigger if both exist
+                    gate_level_trigger = planet
+
+        # Gate-level fixing creates juxtaposition if both polarities present
+        if gate_level_exalted and gate_level_detriment:
+            return {
+                "state": "juxtaposed",
+                "active_trigger": active_planet,
+                "harmonic_trigger": gate_level_trigger,
+                "details": "Gate-level double fixing"
+            }
+        elif gate_level_exalted:
+            return {
+                "state": "exalted",
+                "active_trigger": gate_level_trigger,
+                "harmonic_trigger": None,
+                "details": f"Gate-level fixing via {gate_level_trigger}"
+            }
+        elif gate_level_detriment:
+            return {
+                "state": "detriment",
+                "active_trigger": gate_level_trigger,
+                "harmonic_trigger": None,
+                "details": f"Gate-level fixing via {gate_level_trigger}"
+            }
 
     # Step 4: Check Single Polarity States
     has_exaltation = active_exalted or harmonic_exalted

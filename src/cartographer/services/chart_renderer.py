@@ -364,9 +364,9 @@ def find_planet_at_opposite_gate(gate, opposite_planets_data, is_current_design)
     return None
 
 
-def get_planet_dignity(planet_name, gate, line, exaltations_data, harmonic_gate=None, harmonic_planet=None):
+def get_planet_dignity(planet_name, gate, line, exaltations_data, harmonic_gate=None, harmonic_planet=None, gate_level_planets=None):
     """
-    Determine dignity using full IHDS algorithm including harmonic fixing.
+    Determine dignity using full IHDS algorithm including harmonic and gate-level fixing.
 
     Args:
         planet_name: Active planet
@@ -375,6 +375,7 @@ def get_planet_dignity(planet_name, gate, line, exaltations_data, harmonic_gate=
         exaltations_data: Dignity data dictionary
         harmonic_gate: Harmonic partner gate (if in channel)
         harmonic_planet: Planet at harmonic gate (if any)
+        gate_level_planets: List of all planets at this gate (any line, both aspects)
 
     Returns: 'exalted', 'detriment', 'juxtaposed', or None
     """
@@ -396,7 +397,8 @@ def get_planet_dignity(planet_name, gate, line, exaltations_data, harmonic_gate=
         active_planet=planet_name,
         harmonic_gate=harmonic_gate,
         harmonic_planet=harmonic_planet,
-        dignity_data=exaltations_data
+        dignity_data=exaltations_data,
+        gate_level_planets=gate_level_planets
     )
 
     state = result.get("state")
@@ -949,12 +951,60 @@ def load_alchemical_symbol_path(symbol_name):
     return None, None, None
 
 
-def draw_planetary_panel(ax, planets_data, x_start, is_design=True, panel_width=PANEL_WIDTH, variables=None, exaltations=None):
+def draw_planetary_panel(ax, planets_data, x_start, is_design=True, panel_width=PANEL_WIDTH, variables=None, exaltations=None, opposite_planets_data=None, channels=None):
     """Draw an elegant side panel with planetary activations (Neutrino Design style)."""
     font = get_font()
     symbol_font = get_symbol_font()
     variables = variables or {}
     exaltations = exaltations or {}
+    opposite_planets_data = opposite_planets_data or []
+    channels = channels or []
+
+    # Build channel map: gate -> opposite_gate
+    channel_map = {}
+    for channel_info in channels:
+        if isinstance(channel_info, dict):
+            channel = channel_info.get('channel', '')
+        else:
+            channel = str(channel_info)
+
+        # Extract gate numbers (e.g., "6/59" or "6-59")
+        channel = channel.split(':')[0].strip()
+        if '/' in channel:
+            parts = channel.split('/')
+        elif '-' in channel:
+            parts = channel.split('-')
+        else:
+            continue
+
+        if len(parts) == 2:
+            try:
+                g1, g2 = int(parts[0].strip()), int(parts[1].strip())
+                channel_map[g1] = g2
+                channel_map[g2] = g1
+            except ValueError:
+                pass
+
+    # Build opposite planet lookup: gate -> planet_name
+    opposite_planet_lookup = {p.get('Gate'): p.get('Planet') for p in opposite_planets_data if p.get('Gate')}
+
+    # Build gate-level planet map: gate -> list of all planets at that gate (any line, both aspects)
+    gate_planet_map = {}
+    for planet_data in planets_data:
+        gate = planet_data.get('Gate')
+        planet = planet_data.get('Planet')
+        if gate and planet:
+            if gate not in gate_planet_map:
+                gate_planet_map[gate] = []
+            gate_planet_map[gate].append(planet)
+
+    for planet_data in opposite_planets_data:
+        gate = planet_data.get('Gate')
+        planet = planet_data.get('Planet')
+        if gate and planet:
+            if gate not in gate_planet_map:
+                gate_planet_map[gate] = []
+            gate_planet_map[gate].append(planet)
 
     # Layout constants
     header_height = 26  # Increased from 22 for better hierarchy
@@ -1153,9 +1203,25 @@ def draw_planetary_panel(ax, planets_data, x_start, is_design=True, panel_width=
             elif direction == 'right':
                 arrow = '→'
 
-        # Read dignity from planet data (calculated by get_hd_data.py or API)
-        # This includes all fixing types: direct, harmonic, gate-level, failed juxtaposition
-        dignity = planet_data.get('dignity')
+        # Calculate dignity dynamically using IHDS algorithm with harmonic and gate-level fixing
+        dignity = None
+        if gate != '–' and line != '–' and exaltations:
+            # Find harmonic partner (opposite gate in channel, if any)
+            harmonic_gate = channel_map.get(gate) if isinstance(gate, int) else None
+            harmonic_planet = opposite_planet_lookup.get(harmonic_gate) if harmonic_gate else None
+
+            # Get all planets at this gate (for gate-level fixing)
+            gate_level_planets = gate_planet_map.get(gate, [])
+
+            dignity = get_planet_dignity(
+                planet_name=planet_name,
+                gate=gate,
+                line=line,
+                exaltations_data=exaltations,
+                harmonic_gate=harmonic_gate,
+                harmonic_planet=harmonic_planet,
+                gate_level_planets=gate_level_planets
+            )
         # Render dignity symbol (triangle or star) - centered in cell
         if dignity == 'juxtaposed':
             # Draw four-pointed star for juxtaposition
@@ -1356,8 +1422,17 @@ def draw_chart(chart_data, layout_data, include_panels=True, include_summary=Tru
         _, _, design_planets, personality_planets = normalize_gates_data(chart_data)
         variables = chart_data.get('general', {}).get('variables', {})
         exaltations = load_exaltations_data()
-        draw_planetary_panel(ax, design_planets, 0, is_design=True, variables=variables, exaltations=exaltations)
-        draw_planetary_panel(ax, personality_planets, canvas_w - PANEL_WIDTH, is_design=False, variables=variables, exaltations=exaltations)
+        channels = chart_data.get('channels', {}).get('Channels', [])
+
+        # Draw Design panel (with Personality as opposite for harmonic fixing)
+        draw_planetary_panel(ax, design_planets, 0, is_design=True,
+                           variables=variables, exaltations=exaltations,
+                           opposite_planets_data=personality_planets, channels=channels)
+
+        # Draw Personality panel (with Design as opposite for harmonic fixing)
+        draw_planetary_panel(ax, personality_planets, canvas_w - PANEL_WIDTH, is_design=False,
+                           variables=variables, exaltations=exaltations,
+                           opposite_planets_data=design_planets, channels=channels)
 
     # Body silhouette
     draw_body_outline(ax, layout_data, bodygraph_offset_x)
