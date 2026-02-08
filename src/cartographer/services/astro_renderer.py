@@ -36,9 +36,20 @@ def render_natal_chart(
             geolocator = Nominatim(user_agent="cartographer")
             location = geolocator.reverse(f"{lat}, {lng}", language='en')
             if location:
-                # Extract city from address
+                # Extract location components
                 address = location.raw.get('address', {})
-                city = address.get('city') or address.get('town') or address.get('village') or f"{lat:.4f}, {lng:.4f}"
+                city_name = address.get('city') or address.get('town') or address.get('village')
+                state_code = address.get('ISO3166-2-lvl4', '').split('-')[-1] if 'ISO3166-2-lvl4' in address else address.get('state')
+                country_code = address.get('country_code', '').upper()
+
+                # Build location string (City, State for US; City, Country otherwise)
+                if country_code == 'US' and city_name and state_code:
+                    city = f"{city_name}, {state_code}"
+                elif city_name:
+                    country = address.get('country', '')
+                    city = f"{city_name}, {country}" if country else city_name
+                else:
+                    city = f"{lat:.4f}, {lng:.4f}"
             else:
                 city = f"{lat:.4f}, {lng:.4f}"
         except:
