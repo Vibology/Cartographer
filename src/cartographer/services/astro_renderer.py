@@ -4,6 +4,124 @@ Astrology Chart Rendering Service - Kerykeion chart generation
 
 from kerykeion import AstrologicalSubject, KerykeionChartSVG
 import io
+import re
+
+
+def _inject_font_family(svg_content: str) -> str:
+    """Inject SF Pro font-family and spacing fixes into Kerykeion SVG output.
+
+    Adds CSS rules to:
+    1. Use SF Pro font (with system fallbacks)
+    2. Reduce font size and letter-spacing to prevent column overlap
+    """
+    font_rule = (
+        "text { "
+        "font-family: 'SF Pro', 'SF Pro Display', '-apple-system', 'Helvetica Neue', sans-serif; "
+        "font-size: 9px; "  # Smaller font to prevent column overlap
+        "letter-spacing: -0.5px; "  # Tighter kerning for degree/minute/second symbols
+        "}\n"
+    )
+    # Insert after opening <style> tag
+    if "<style" in svg_content:
+        svg_content = re.sub(
+            r'(<style[^>]*>)',
+            r'\1\n        ' + font_rule + '        ',
+            svg_content,
+            count=1
+        )
+    else:
+        # No style tag — inject one after the opening <svg> tag
+        svg_content = svg_content.replace(
+            '<title>',
+            f'<style>{font_rule}</style>\n    <title>',
+            1
+        )
+    return svg_content
+
+def _fix_cusp_alignment(svg_content: str) -> str:
+    """Fix cusp label alignment to be left-justified.
+
+    Kerykeion generates right-aligned cusp labels with non-breaking space padding,
+    causing inconsistent spacing. This converts them to left-aligned text.
+    """
+    # Remove non-breaking spaces before cusp numbers and change to left alignment
+    # Pattern: <text text-anchor='end' x='40' ...>Cusp &#160;&#160;1:</text>
+    # Replace with: <text x='0' ...>Cusp 1:</text>
+    svg_content = re.sub(
+        r"<text text-anchor='end' x='40'([^>]*)>Cusp\s*(?:&#160;)*(\d+):",
+        r"<text x='0'\1>Cusp \2:",
+        svg_content
+    )
+    return svg_content
+
+def _adjust_planet_grid_spacing(svg_content: str) -> str:
+    """Increase spacing between planet positions and zodiac sign symbols.
+
+    Moves zodiac symbols and retrograde indicators further right to prevent overlap
+    with degree/minute/second text in the planetary positions grid.
+    """
+    # Move zodiac sign symbols from translate(60,-8) to translate(75,-8)
+    svg_content = re.sub(
+        r"<g transform='translate\(60,-8\)'><use transform='scale\(0\.3\)' xlink:href='#(Ari|Tau|Gem|Can|Leo|Vir|Lib|Sco|Sag|Cap|Aqu|Pis)' /></g>",
+        r"<g transform='translate(75,-8)'><use transform='scale(0.3)' xlink:href='#\1' /></g>",
+        svg_content
+    )
+
+    # Move retrograde symbols from translate(74,-6) to translate(89,-6)
+    svg_content = re.sub(
+        r"<g transform='translate\(74,-6\)'><use transform='scale\(\.5\)' xlink:href='#retrograde' /></g>",
+        r"<g transform='translate(89,-6)'><use transform='scale(.5)' xlink:href='#retrograde' /></g>",
+        svg_content
+    )
+
+    return svg_content
+
+def _combine_location_line(svg_content: str) -> str:
+    """Combine 'Location:' label and city name onto a single line.
+
+    Kerykeion generates these as separate text elements on different lines.
+    This merges them and adjusts subsequent line positions.
+    """
+    # Find Location: and city text elements
+    location_pattern = (
+        r"(<text kr:node='Top_Left_Text_0'[^>]*y='58'[^>]*>Location:</text>)\s*"
+        r"<text kr:node='Top_Left_Text_1'[^>]*y='70'[^>]*>([^<]+)</text>"
+    )
+
+    # Replace with combined single-line text
+    svg_content = re.sub(
+        location_pattern,
+        r"<text kr:node='Top_Left_Text_0' x='20' y='58' style='fill: var(--kerykeion-chart-color-paper-0); font-size: 10px'>Location: \2</text>",
+        svg_content
+    )
+
+    # Shift subsequent text elements up by 12 pixels (the removed line spacing)
+    # Top_Left_Text_2: y='82' -> y='70'
+    svg_content = re.sub(
+        r"(<text kr:node='Top_Left_Text_2'[^>]*)y='82'",
+        r"\1y='70'",
+        svg_content
+    )
+    # Top_Left_Text_3: y='94' -> y='82'
+    svg_content = re.sub(
+        r"(<text kr:node='Top_Left_Text_3'[^>]*)y='94'",
+        r"\1y='82'",
+        svg_content
+    )
+    # Top_Left_Text_4: y='106' -> y='94'
+    svg_content = re.sub(
+        r"(<text kr:node='Top_Left_Text_4'[^>]*)y='106'",
+        r"\1y='94'",
+        svg_content
+    )
+    # Top_Left_Text_5: y='118' -> y='106'
+    svg_content = re.sub(
+        r"(<text kr:node='Top_Left_Text_5'[^>]*)y='118'",
+        r"\1y='106'",
+        svg_content
+    )
+
+    return svg_content
 
 def render_natal_chart(
     name: str,
@@ -77,6 +195,18 @@ def render_natal_chart(
     # Generate SVG chart
     chart = KerykeionChartSVG(subject, chart_type="Natal")
     svg_content = chart.makeTemplate()
+
+    # Inject SF Pro font-family into SVG (Kerykeion templates have no explicit font)
+    svg_content = _inject_font_family(svg_content)
+
+    # Fix cusp alignment to be left-justified
+    svg_content = _fix_cusp_alignment(svg_content)
+
+    # Adjust planet grid spacing to prevent overlap
+    svg_content = _adjust_planet_grid_spacing(svg_content)
+
+    # Combine location label and city name onto single line
+    svg_content = _combine_location_line(svg_content)
 
     if output_format == "svg":
         return svg_content.encode('utf-8'), "image/svg+xml"

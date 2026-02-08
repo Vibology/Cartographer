@@ -17,6 +17,7 @@ Algorithm priority order:
 """
 
 import json
+import sys
 import importlib.resources
 from typing import Optional, Dict, List, Tuple
 
@@ -49,12 +50,12 @@ def load_dignity_data() -> Dict:
         return _dignity_data_cache
 
     try:
-        data_path = importlib.resources.files("humandesign.data").joinpath("exaltations_detriments.json")
+        data_path = importlib.resources.files("cartographer.data").joinpath("exaltations_detriments.json")
         with data_path.open("r", encoding="utf-8") as f:
             _dignity_data_cache = json.load(f)
             return _dignity_data_cache
     except Exception as e:
-        print(f"Error loading dignity data: {e}")
+        print(f"Error loading dignity data: {e}", file=sys.stderr)
         return {}
 
 

@@ -5,7 +5,7 @@ Renders Human Design bodygraph charts with:
 - Luminous gradient fills for defined centers
 - Soft glow effects emanating from centers
 - Ethereal body silhouette
-- Cabin font typography
+- SF Pro typography
 - Planetary activation side panels
 - Summary information panel
 """
@@ -31,27 +31,36 @@ from PIL import Image
 
 # --- FONT CONFIGURATION ---
 def setup_fonts():
-    """Register Cabin fonts with matplotlib."""
+    """Register SF Pro fonts with matplotlib from macOS system paths."""
+    sf_pro_paths = [
+        '/System/Library/Fonts/',
+        '/Library/Fonts/',
+        os.path.expanduser('~/Library/Fonts/'),
+    ]
     try:
-        font_dir = importlib.resources.files("src.cartographer.data").joinpath("fonts")
-        for ttf in ['Cabin-Regular.ttf', 'Cabin-Bold.ttf', 'Cabin-Medium.ttf', 'Cabin-SemiBold.ttf']:
-            font_path = font_dir.joinpath(ttf)
-            if font_path.is_file():
-                fm.fontManager.addfont(str(font_path))
+        for font_dir in sf_pro_paths:
+            if os.path.isdir(font_dir):
+                for fname in os.listdir(font_dir):
+                    if 'SF' in fname and fname.endswith(('.ttf', '.otf')):
+                        fm.fontManager.addfont(os.path.join(font_dir, fname))
     except Exception as e:
-        print(f"Warning: Could not load Cabin fonts: {e}")
+        print(f"Warning: Could not load SF Pro fonts: {e}")
 
 setup_fonts()
 
 # Typography settings
-FONT_FAMILY = 'Cabin'
-FONT_FALLBACK = 'DejaVu Sans'
+FONT_FAMILY = 'SF Pro'
+FONT_FALLBACK = 'Helvetica Neue'
 FONT_SYMBOLS = 'DejaVu Sans Mono'  # Monospace for consistent glyph alignment
 
 def get_font():
     """Get the best available font for text."""
-    cabin_fonts = [f for f in fm.fontManager.ttflist if 'Cabin' in f.name]
-    return FONT_FAMILY if cabin_fonts else FONT_FALLBACK
+    sf_fonts = [f for f in fm.fontManager.ttflist if 'SF Pro' in f.name]
+    if sf_fonts:
+        return FONT_FAMILY
+    # Try Helvetica Neue as secondary fallback (always available on macOS)
+    hn_fonts = [f for f in fm.fontManager.ttflist if 'Helvetica Neue' in f.name]
+    return FONT_FALLBACK if hn_fonts else 'DejaVu Sans'
 
 def get_symbol_font():
     """Get font for astrological symbols (monospace ensures consistent alignment)."""
@@ -297,11 +306,11 @@ def ensure_chart_data_complete(chart_data):
 def load_json_layout():
     """Loads the SVG layout data from layout_data.json."""
     try:
-        data_path = importlib.resources.files("src.cartographer.data").joinpath(LAYOUT_FILE)
+        data_path = importlib.resources.files("cartographer.data").joinpath(LAYOUT_FILE)
         with data_path.open("r", encoding="utf-8") as f:
             return json.load(f)
     except Exception as e:
-        print(f"Error loading layout file: {e}")
+        print(f"Error loading layout file: {e}", file=sys.stderr)
         return {}
 
 
@@ -314,7 +323,7 @@ def load_exaltations_data():
     if _exaltations_cache is not None:
         return _exaltations_cache
     try:
-        data_path = importlib.resources.files("src.cartographer.data").joinpath(EXALTATIONS_FILE)
+        data_path = importlib.resources.files("cartographer.data").joinpath(EXALTATIONS_FILE)
         with data_path.open("r", encoding="utf-8") as f:
             _exaltations_cache = json.load(f)
             return _exaltations_cache
@@ -920,7 +929,7 @@ def draw_gate_numbers(ax, chart_data, layout_data, offset_x=0):
 def load_alchemical_symbol_path(symbol_name):
     """Load alchemical symbol SVG and extract path data for vector rendering."""
     try:
-        # Path to symbol SVG file (in humandesign_api root folder)
+        # Path to symbol SVG file (in Cartographer root folder)
         svg_path = os.path.join(os.path.dirname(__file__), '..', '..', '..', f'{symbol_name}.svg')
 
         # Parse SVG
@@ -1203,25 +1212,8 @@ def draw_planetary_panel(ax, planets_data, x_start, is_design=True, panel_width=
             elif direction == 'right':
                 arrow = '→'
 
-        # Calculate dignity dynamically using IHDS algorithm with harmonic and gate-level fixing
-        dignity = None
-        if gate != '–' and line != '–' and exaltations:
-            # Find harmonic partner (opposite gate in channel, if any)
-            harmonic_gate = channel_map.get(gate) if isinstance(gate, int) else None
-            harmonic_planet = opposite_planet_lookup.get(harmonic_gate) if harmonic_gate else None
-
-            # Get all planets at this gate (for gate-level fixing)
-            gate_level_planets = gate_planet_map.get(gate, [])
-
-            dignity = get_planet_dignity(
-                planet_name=planet_name,
-                gate=gate,
-                line=line,
-                exaltations_data=exaltations,
-                harmonic_gate=harmonic_gate,
-                harmonic_planet=harmonic_planet,
-                gate_level_planets=gate_level_planets
-            )
+        # Read dignity from planet data (already calculated by get_hd_data.py)
+        dignity = planet_data.get('dignity')
         # Render dignity symbol (triangle or star) - centered in cell
         if dignity == 'juxtaposed':
             # Draw four-pointed star for juxtaposition
