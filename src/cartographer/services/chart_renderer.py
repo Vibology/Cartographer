@@ -10,6 +10,8 @@ Renders Human Design bodygraph charts with:
 - Summary information panel
 """
 
+import matplotlib
+matplotlib.use('Agg')  # Use non-interactive backend for server use
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 import matplotlib.path as mpath
