@@ -134,9 +134,11 @@ ASPECTS = {
 }
 
 # Canvas dimensions
-CANVAS_SIZE = 700  # Square canvas
+CANVAS_SIZE = 780  # Square canvas (increased for metadata padding)
+METADATA_HEIGHT = 70  # Height of metadata panel
+METADATA_PADDING = 10  # Padding around metadata
 CENTER_X = CANVAS_SIZE / 2
-CENTER_Y = CANVAS_SIZE / 2
+CENTER_Y = (CANVAS_SIZE + METADATA_HEIGHT) / 2  # Offset center down for metadata space
 CHART_RADIUS = 280  # Outer edge of chart
 ZODIAC_RING_WIDTH = 40  # Width of zodiac sign ring
 HOUSE_RING_INNER = 80  # Inner edge of house ring (center of chart)
@@ -509,8 +511,8 @@ def draw_aspects(ax, center_x, center_y, planets_data, aspect_radius):
             [x1, x2], [y1, y2],
             color=color,
             linewidth=linewidth,
-            alpha=0.4,  # Semi-transparent to avoid cluttering
-            zorder=5,  # Behind planets but above background
+            alpha=0.6,  # More visible (was 0.4)
+            zorder=8,  # Behind planets (10+) but above wheel (5-7)
             linestyle='-'
         )
 
@@ -557,10 +559,10 @@ def draw_metadata_panel(ax, astro_data, canvas_width, y_position):
     mc_str = format_zodiac_position(mc_degree)
 
     # Panel background
-    panel_height = 60
+    panel_height = 65
     panel = FancyBboxPatch(
-        (10, y_position),
-        canvas_width - 20,
+        (15, y_position),
+        canvas_width - 30,
         panel_height,
         boxstyle="round,pad=0.02,rounding_size=6",
         facecolor='#FAFBFC',
@@ -672,6 +674,10 @@ def generate_natal_chart_image(
     ax.set_facecolor('none')
     draw_background_gradient(ax, CANVAS_SIZE)
 
+    # Draw metadata panel first (at top)
+    if include_metadata:
+        draw_metadata_panel(ax, astro_data, CANVAS_SIZE, METADATA_PADDING)
+
     # Draw zodiac wheel
     draw_zodiac_wheel(ax, CENTER_X, CENTER_Y, CHART_RADIUS, ZODIAC_RING_WIDTH)
 
@@ -696,15 +702,12 @@ def generate_natal_chart_image(
 
         # Draw aspect lines (behind planets)
         if include_aspects and len(planets_data) > 1:
-            aspect_radius = HOUSE_RING_INNER + 10  # Just inside innermost content
+            # Place aspect endpoints between center and planet positions
+            aspect_radius = PLANET_RING_RADIUS - 30  # Slightly inside planet ring
             draw_aspects(ax, CENTER_X, CENTER_Y, planets_data, aspect_radius)
 
         # Draw planets (on top of aspects)
         draw_planets(ax, CENTER_X, CENTER_Y, planets_data, PLANET_RING_RADIUS)
-
-    # Draw metadata panel at top
-    if include_metadata:
-        draw_metadata_panel(ax, astro_data, CANVAS_SIZE, 10)
 
     # Save to buffer
     buf = io.BytesIO()
