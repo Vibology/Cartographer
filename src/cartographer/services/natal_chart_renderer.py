@@ -529,23 +529,36 @@ def draw_metadata_panel(ax, astro_data, canvas_width, y_position):
     """
     font = get_font()
 
-    # Extract metadata
-    name = astro_data.get('name', 'Natal Chart')
-    birth_data = astro_data.get('birth_data', {})
-    houses = astro_data.get('houses', {})
+    # Extract metadata from Kerykeion format
+    meta = astro_data.get('meta', {})
+    name = meta.get('name', 'Natal Chart')
 
     # Format birth date/time
-    if birth_data:
-        date_str = birth_data.get('date', '')
-        time_str = birth_data.get('time', '')
-        location = birth_data.get('location', '')
-        birth_info = f"{date_str} • {time_str} • {location}"
+    birth_date = meta.get('birth_date', '')
+    birth_time = meta.get('birth_time', '')
+    if birth_date and birth_time:
+        birth_info = f"{birth_date} • {birth_time}"
     else:
         birth_info = ""
 
-    # Get ASC and MC
-    asc_degree = houses.get('house_1', 0)
-    mc_degree = houses.get('house_10', 0)
+    # Get ASC and MC from angles (not houses)
+    angles = astro_data.get('angles', {})
+    asc_data = angles.get('ascendant', {})
+    mc_data = angles.get('midheaven', {})
+
+    # Extract absolute positions (need to convert from sign + position to 0-360)
+    asc_sign = asc_data.get('sign', 'Aqu')
+    asc_position = asc_data.get('position', 0)
+    mc_sign = mc_data.get('sign', 'Sag')
+    mc_position = mc_data.get('position', 0)
+
+    # Convert to absolute longitude (0-360)
+    sign_to_index = {
+        'Ari': 0, 'Tau': 1, 'Gem': 2, 'Can': 3, 'Leo': 4, 'Vir': 5,
+        'Lib': 6, 'Sco': 7, 'Sag': 8, 'Cap': 9, 'Aqu': 10, 'Pis': 11
+    }
+    asc_degree = sign_to_index.get(asc_sign, 0) * 30 + asc_position
+    mc_degree = sign_to_index.get(mc_sign, 0) * 30 + mc_position
 
     # Convert to sign and degree
     def format_zodiac_position(longitude):
@@ -651,15 +664,30 @@ def generate_natal_chart_image(
         Image bytes
     """
     # Extract house cusps from astro data
-    # Format from astro_calculator: {'house_1': 193.69, 'house_2': 220.77, ...}
+    # Format from astro_calculator: {'house_1': {'sign': 'Aqu', 'position': 12.5}, ...}
     houses_data = astro_data.get('houses', {})
     house_cusps = []
+
+    # Sign to index mapping
+    sign_to_index = {
+        'Ari': 0, 'Tau': 1, 'Gem': 2, 'Can': 3, 'Leo': 4, 'Vir': 5,
+        'Lib': 6, 'Sco': 7, 'Sag': 8, 'Cap': 9, 'Aqu': 10, 'Pis': 11
+    }
 
     # Extract positions for houses 1-12
     for i in range(1, 13):
         house_key = f"house_{i}"
         if house_key in houses_data:
-            house_cusps.append(houses_data[house_key])
+            house_data = houses_data[house_key]
+            # Convert from sign + position to absolute longitude (0-360)
+            if isinstance(house_data, dict):
+                sign = house_data.get('sign', 'Ari')
+                position = house_data.get('position', 0)
+                abs_longitude = sign_to_index.get(sign, 0) * 30 + position
+                house_cusps.append(abs_longitude)
+            else:
+                # Old format: just a number
+                house_cusps.append(house_data)
         else:
             # Fallback: equal house system (30° per house, starting at 0°)
             house_cusps.append((i - 1) * 30)
@@ -687,19 +715,23 @@ def generate_natal_chart_image(
     draw_house_cusps(ax, CENTER_X, CENTER_Y, house_cusps, HOUSE_RING_INNER, inner_radius)
 
     # Extract and draw planets
-    # astro_data format: {'planets': [{'name': 'Sun', 'longitude': 84.38, ...}, ...]}
-    planets_list = astro_data.get('planets', [])
+    # astro_data format: {'planets': {'sun': {'abs_position': 175.6, 'sign': 'Vir', ...}, ...}}
+    planets_dict = astro_data.get('planets', {})
     planets_data = {}
-    if planets_list:
-        # Convert list to dict keyed by planet name
-        for planet in planets_list:
-            planet_name = planet.get('name', '')
-            if planet_name:
-                planets_data[planet_name] = {
-                    'position': planet.get('longitude', 0),
-                    'sign': planet.get('sign', ''),
-                    'retrograde': planet.get('retrograde', False)
-                }
+    if planets_dict:
+        # Convert dict to our format with capitalized names
+        for planet_name_lower, planet_info in planets_dict.items():
+            # Capitalize planet name (sun -> Sun, moon -> Moon, etc.)
+            planet_name = planet_name_lower.capitalize()
+
+            # Extract position (abs_position is zodiacal longitude 0-360)
+            position = planet_info.get('abs_position', 0)
+
+            planets_data[planet_name] = {
+                'position': position,
+                'sign': planet_info.get('sign', ''),
+                'retrograde': planet_info.get('retrograde', False)
+            }
 
         # Draw aspect lines (behind planets)
         if include_aspects and len(planets_data) > 1:
