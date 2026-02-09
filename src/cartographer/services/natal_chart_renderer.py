@@ -506,15 +506,16 @@ def draw_aspects(ax, center_x, center_y, planets_data, aspect_radius):
         color = aspect_info['color']
         linewidth = aspect_info['linewidth']
 
-        # Draw aspect line
-        ax.plot(
+        # Draw aspect line (with clipping disabled)
+        line = ax.plot(
             [x1, x2], [y1, y2],
             color=color,
             linewidth=linewidth,
             alpha=0.6,  # More visible (was 0.4)
             zorder=8,  # Behind planets (10+) but above wheel (5-7)
             linestyle='-'
-        )
+        )[0]
+        line.set_clip_on(False)  # Disable clipping to ensure lines are visible
 
 
 def draw_metadata_panel(ax, astro_data, canvas_width, y_position):
@@ -711,11 +712,11 @@ def generate_natal_chart_image(
 
     # Save to buffer
     buf = io.BytesIO()
-    if fmt.lower() == 'svg':
-        fig.savefig(buf, format='svg', bbox_inches='tight', pad_inches=0.1, transparent=True)
-    else:  # PNG
+    if fmt.lower() in ['png', 'jpg', 'jpeg']:
         fig.savefig(buf, format='png', bbox_inches='tight', pad_inches=0.1,
                    transparent=True, dpi=150)
+    else:  # SVG (default)
+        fig.savefig(buf, format='svg', bbox_inches='tight', pad_inches=0.1, transparent=True)
 
     plt.close(fig)
     buf.seek(0)
