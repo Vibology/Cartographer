@@ -698,6 +698,9 @@ def generate_natal_chart_image(
     ax.set_ylim(CANVAS_SIZE, 0)  # Invert Y axis
     ax.axis('off')
 
+    # Disable clipping to allow aspect lines to extend to full canvas
+    ax.set_clip_on(False)
+
     # Background
     fig.patch.set_facecolor('none')
     ax.set_facecolor('none')
@@ -745,10 +748,9 @@ def generate_natal_chart_image(
     # Save to buffer
     buf = io.BytesIO()
     if fmt.lower() in ['png', 'jpg', 'jpeg']:
-        fig.savefig(buf, format='png', bbox_inches='tight', pad_inches=0.1,
-                   transparent=True, dpi=150)
+        fig.savefig(buf, format='png', transparent=True, dpi=150)
     else:  # SVG (default)
-        fig.savefig(buf, format='svg', bbox_inches='tight', pad_inches=0.1, transparent=True)
+        fig.savefig(buf, format='svg', transparent=True)
 
     plt.close(fig)
     buf.seek(0)
