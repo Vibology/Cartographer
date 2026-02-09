@@ -3,6 +3,7 @@ from geopy.distance import geodesic
 from typing import Optional, Tuple, List
 from dataclasses import dataclass
 from timezonefinder import TimezoneFinder
+import unicodedata
 
 # Singleton instance
 # in_memory=True ensures the binary file is loaded once into RAM (20-30MB) 
@@ -26,10 +27,13 @@ def get_latitude_longitude(place: str) -> Tuple[Optional[float], Optional[float]
     Returns:
         Tuple[float, float]: Latitude and Longitude, or (None, None) if not found.
     """
+    # Normalize Unicode to NFC (macOS paths/args often use NFD decomposed accents)
+    place = unicodedata.normalize('NFC', place)
+
     # Bypass for timezone names to avoid network calls in tests or when TZ is known
     if "/" in place:
         return 0.0, 0.0 # Return placeholder coordinates
-        
+
     geolocator = Nominatim(user_agent="geocoding_api")
     try:
         location = geolocator.geocode(place, timeout=2) # Shorter timeout
