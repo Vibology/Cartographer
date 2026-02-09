@@ -480,9 +480,11 @@ def draw_aspects(ax, center_x, center_y, planets_data, aspect_radius):
     """
     Draw aspect lines connecting planets.
 
+    Traditional style: lines cross through the chart center for maximum visibility.
+
     Args:
         planets_data: Dict of planet positions
-        aspect_radius: Radius for aspect line endpoints (slightly inside planet positions)
+        aspect_radius: Radius for aspect line endpoints (inner ring, closer to center)
     """
     aspects = find_aspects(planets_data)
 
@@ -495,7 +497,8 @@ def draw_aspects(ax, center_x, center_y, planets_data, aspect_radius):
         angle1_rad = np.radians(180 - pos1)
         angle2_rad = np.radians(180 - pos2)
 
-        # Calculate line endpoints
+        # Draw from inner ring to create long, visible lines across the chart
+        # This creates the traditional aspect pattern with lines crossing through center
         x1 = center_x + aspect_radius * np.cos(angle1_rad)
         y1 = center_y + aspect_radius * np.sin(angle1_rad)
         x2 = center_x + aspect_radius * np.cos(angle2_rad)
@@ -511,7 +514,7 @@ def draw_aspects(ax, center_x, center_y, planets_data, aspect_radius):
             [x1, x2], [y1, y2],
             color=color,
             linewidth=linewidth,
-            alpha=0.6,  # More visible (was 0.4)
+            alpha=0.6,
             zorder=8,  # Behind planets (10+) but above wheel (5-7)
             linestyle='-'
         )[0]
@@ -743,8 +746,9 @@ def generate_natal_chart_image(
 
         # Draw aspect lines (behind planets)
         if include_aspects and len(planets_data) > 1:
-            # Place aspect endpoints between center and planet positions
-            aspect_radius = PLANET_RING_RADIUS - 30  # Slightly inside planet ring
+            # Use outer edge of zodiac wheel for maximum line visibility
+            # This creates the longest possible chords across the chart
+            aspect_radius = CHART_RADIUS - ZODIAC_RING_WIDTH - 10  # Just inside zodiac ring
             draw_aspects(ax, CENTER_X, CENTER_Y, planets_data, aspect_radius)
 
         # Draw planets (on top of aspects)
