@@ -7,6 +7,12 @@ import io
 import re
 
 
+# Square chart dimensions for panel-friendly viewing
+# Results in ~700×730 viewBox (aspect ratio ~0.96:1, effectively square)
+SQUARE_CHART_WIDTH = 700
+SQUARE_CHART_HEIGHT = 700
+
+
 def _inject_font_family(svg_content: str) -> str:
     """Inject SF Pro font-family and spacing fixes into Kerykeion SVG output.
 
@@ -192,8 +198,14 @@ def render_natal_chart(
         nation=nation
     )
 
-    # Generate SVG chart
+    # Generate SVG chart with square dimensions (700×700 → ~700×730 viewBox)
     chart = KerykeionChartSVG(subject, chart_type="Natal")
+
+    # Initialize internal chart drawer and set square dimensions
+    chart._ensure_chart()
+    chart._chart_drawer.width = SQUARE_CHART_WIDTH
+    chart._chart_drawer.height = SQUARE_CHART_HEIGHT
+
     svg_content = chart.makeTemplate()
 
     # Inject SF Pro font-family into SVG (Kerykeion templates have no explicit font)
