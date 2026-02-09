@@ -693,13 +693,18 @@ def generate_natal_chart_image(
             house_cusps.append((i - 1) * 30)
 
     # Figure setup
-    fig, ax = plt.subplots(figsize=(10, 10), dpi=100)
+    # figsize in inches: CANVAS_SIZE pixels / 72 dpi (SVG standard)
+    fig_inches = CANVAS_SIZE / 72
+    fig, ax = plt.subplots(figsize=(fig_inches, fig_inches), dpi=72)
     ax.set_xlim(0, CANVAS_SIZE)
     ax.set_ylim(CANVAS_SIZE, 0)  # Invert Y axis
     ax.axis('off')
 
     # Disable clipping to allow aspect lines to extend to full canvas
     ax.set_clip_on(False)
+
+    # Remove all margins so figure matches canvas exactly
+    fig.subplots_adjust(left=0, right=1, top=1, bottom=0)
 
     # Background
     fig.patch.set_facecolor('none')
