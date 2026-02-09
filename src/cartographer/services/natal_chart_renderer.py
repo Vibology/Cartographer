@@ -5,6 +5,7 @@ Renders traditional natal charts with circular zodiac wheel.
 Matches the aesthetic of the bodygraph renderer.
 
 Phase 1: Basic wheel geometry, zodiac divisions, house cusps
+Phase 2: Planetary positions, symbols, degree labels
 """
 
 import matplotlib
@@ -85,6 +86,43 @@ ZODIAC_ORDER = [
     'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'
 ]
 
+# Planet symbols (Unicode)
+PLANET_SYMBOLS = {
+    'Sun': '☉',
+    'Moon': '☽',
+    'Mercury': '☿',
+    'Venus': '♀',
+    'Mars': '♂',
+    'Jupiter': '♃',
+    'Saturn': '♄',
+    'Uranus': '⛢',
+    'Neptune': '♆',
+    'Pluto': '♇',
+    'True_North_Lunar_Node': '☊',
+    'Mean_Lilith': '⚸',
+    'Chiron': '⚷'
+}
+
+# Planet display order and colors
+PLANET_ORDER = [
+    'Sun', 'Moon', 'Mercury', 'Venus', 'Mars',
+    'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'
+]
+
+# Planet color coding (optional, can use monochrome)
+PLANET_COLORS = {
+    'Sun': '#F39C12',      # Gold
+    'Moon': '#95A5A6',     # Silver
+    'Mercury': '#3498DB',  # Blue
+    'Venus': '#E91E63',    # Pink
+    'Mars': '#E74C3C',     # Red
+    'Jupiter': '#9B59B6',  # Purple
+    'Saturn': '#34495E',   # Dark gray
+    'Uranus': '#1ABC9C',   # Teal
+    'Neptune': '#16A085',  # Sea green
+    'Pluto': '#2C3E50'     # Almost black
+}
+
 # Canvas dimensions
 CANVAS_SIZE = 700  # Square canvas
 CENTER_X = CANVAS_SIZE / 2
@@ -92,6 +130,7 @@ CENTER_Y = CANVAS_SIZE / 2
 CHART_RADIUS = 280  # Outer edge of chart
 ZODIAC_RING_WIDTH = 40  # Width of zodiac sign ring
 HOUSE_RING_INNER = 80  # Inner edge of house ring (center of chart)
+PLANET_RING_RADIUS = 200  # Radius for planet symbols (between houses and zodiac)
 
 
 def draw_background_gradient(ax, size):
@@ -263,6 +302,119 @@ def draw_house_cusps(ax, center_x, center_y, house_cusps, inner_radius, outer_ra
         )
 
 
+def draw_planets(ax, center_x, center_y, planets_data, planet_radius):
+    """
+    Draw planet symbols and degree labels at their zodiac positions.
+
+    Args:
+        planets_data: Dict of planet positions from astro_calculator
+                      Format: {'Sun': {'position': 24.532, 'sign': 'Gemini', 'retrograde': False}, ...}
+        planet_radius: Radius from center where planets are placed
+    """
+    font = get_font()
+    symbol_font = get_symbol_font()
+
+    # Track placed planets for collision detection
+    placed_positions = []
+
+    for planet_name in PLANET_ORDER:
+        if planet_name not in planets_data:
+            continue
+
+        planet_info = planets_data[planet_name]
+        zodiac_longitude = planet_info.get('position', 0)  # 0-360 degrees
+        is_retrograde = planet_info.get('retrograde', False)
+
+        # Convert zodiac longitude to matplotlib angle
+        # Zodiac 0° = 180° matplotlib (9 o'clock), counter-clockwise
+        angle_matplotlib = 180 - zodiac_longitude
+        angle_rad = np.radians(angle_matplotlib)
+
+        # Check for collisions and adjust radius if needed
+        adjusted_radius = planet_radius
+        collision_detected = False
+
+        for placed_angle, placed_radius in placed_positions:
+            angle_diff = abs(angle_matplotlib - placed_angle)
+            # Normalize to 0-180 range
+            if angle_diff > 180:
+                angle_diff = 360 - angle_diff
+
+            # If planets are within 15° of each other, offset the radius
+            if angle_diff < 15:
+                collision_detected = True
+                # Alternate between inner and outer positions
+                if len([p for p in placed_positions if abs(p[0] - angle_matplotlib) < 15]) % 2 == 0:
+                    adjusted_radius = planet_radius - 25
+                else:
+                    adjusted_radius = planet_radius + 25
+                break
+
+        # Calculate planet position
+        planet_x = center_x + adjusted_radius * np.cos(angle_rad)
+        planet_y = center_y + adjusted_radius * np.sin(angle_rad)
+
+        # Get planet color
+        planet_color = PLANET_COLORS.get(planet_name, '#34495E')
+
+        # Draw planet symbol
+        symbol = PLANET_SYMBOLS.get(planet_name, '?')
+        ax.text(
+            planet_x, planet_y,
+            symbol,
+            fontsize=18,
+            ha='center',
+            va='center',
+            color=planet_color,
+            fontfamily=symbol_font,
+            fontweight='bold',
+            zorder=15
+        )
+
+        # Add retrograde indicator if applicable
+        if is_retrograde:
+            rx_x = planet_x + 12
+            rx_y = planet_y - 8
+            ax.text(
+                rx_x, rx_y,
+                'Rx',
+                fontsize=7,
+                ha='left',
+                va='top',
+                color=planet_color,
+                fontfamily=font,
+                style='italic',
+                alpha=0.8,
+                zorder=15
+            )
+
+        # Add degree label
+        # Format: degree and minute (e.g., "24°32'")
+        degree = int(zodiac_longitude % 30)  # Degree within sign (0-29)
+        minute = int((zodiac_longitude % 1) * 60)  # Minute within degree
+        degree_label = f"{degree}°{minute:02d}'"
+
+        # Position label slightly inside the planet
+        label_radius = adjusted_radius - 30
+        label_x = center_x + label_radius * np.cos(angle_rad)
+        label_y = center_y + label_radius * np.sin(angle_rad)
+
+        ax.text(
+            label_x, label_y,
+            degree_label,
+            fontsize=8,
+            ha='center',
+            va='center',
+            color=planet_color,
+            fontfamily=font,
+            alpha=0.9,
+            zorder=14
+        )
+
+        # Record this planet's position for collision detection
+        placed_positions.append((angle_matplotlib, adjusted_radius))
+
+
 def generate_natal_chart_image(
     astro_data: dict,
     layout: str = "square",
@@ -310,6 +462,22 @@ def generate_natal_chart_image(
     # Draw house cusps
     inner_radius = CHART_RADIUS - ZODIAC_RING_WIDTH  # Inside zodiac ring
     draw_house_cusps(ax, CENTER_X, CENTER_Y, house_cusps, HOUSE_RING_INNER, inner_radius)
+
+    # Extract and draw planets
+    # astro_data format: {'planets': [{'name': 'Sun', 'longitude': 84.38, ...}, ...]}
+    planets_list = astro_data.get('planets', [])
+    if planets_list:
+        # Convert list to dict keyed by planet name
+        planets_data = {}
+        for planet in planets_list:
+            planet_name = planet.get('name', '')
+            if planet_name:
+                planets_data[planet_name] = {
+                    'position': planet.get('longitude', 0),
+                    'sign': planet.get('sign', ''),
+                    'retrograde': planet.get('retrograde', False)
+                }
+        draw_planets(ax, CENTER_X, CENTER_Y, planets_data, PLANET_RING_RADIUS)
 
     # Save to buffer
     buf = io.BytesIO()
