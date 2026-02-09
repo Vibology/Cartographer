@@ -123,6 +123,98 @@ def _combine_location_line(svg_content: str) -> str:
 
     return svg_content
 
+
+def _fix_viewbox_clipping(svg_content: str) -> str:
+    """Expand viewBox to prevent degree marker clipping.
+
+    Kerykeion's default viewBox='0 -15 890 580' clips rotated degree labels.
+    Expand to give more breathing room.
+    """
+    # Expand viewBox: add padding on all sides
+    svg_content = re.sub(
+        r"viewBox='0 -15 890 580'",
+        r"viewBox='-30 -45 950 650'",
+        svg_content
+    )
+
+    return svg_content
+
+
+def _enhance_colors(svg_content: str) -> str:
+    """Enhance color palette for better visual identity.
+
+    Makes zodiac wheel more vibrant and aspects more visible.
+    """
+    # More vibrant zodiac colors (Fire=red/orange, Earth=green/brown, Air=blue/purple, Water=blue/teal)
+    color_replacements = {
+        # Fire signs (Aries, Leo, Sag) - vibrant reds/oranges
+        '--kerykeion-chart-color-zodiac-bg-0': '#ff4500',  # Aries - red-orange
+        '--kerykeion-chart-color-zodiac-bg-4': '#ff6b35',  # Leo - coral
+        '--kerykeion-chart-color-zodiac-bg-8': '#ff8c42',  # Sag - light orange
+
+        # Earth signs (Taurus, Virgo, Cap) - greens/browns
+        '--kerykeion-chart-color-zodiac-bg-1': '#6b8e23',  # Taurus - olive green
+        '--kerykeion-chart-color-zodiac-bg-5': '#8b7355',  # Virgo - earth brown
+        '--kerykeion-chart-color-zodiac-bg-9': '#556b2f',  # Cap - dark olive
+
+        # Air signs (Gemini, Libra, Aquarius) - blues/purples
+        '--kerykeion-chart-color-zodiac-bg-2': '#4682b4',  # Gemini - steel blue
+        '--kerykeion-chart-color-zodiac-bg-6': '#6a5acd',  # Libra - slate blue
+        '--kerykeion-chart-color-zodiac-bg-10': '#5f9ea0', # Aquarius - cadet blue
+
+        # Water signs (Cancer, Scorpio, Pisces) - deep blues/teals
+        '--kerykeion-chart-color-zodiac-bg-3': '#20b2aa',  # Cancer - light sea green
+        '--kerykeion-chart-color-zodiac-bg-7': '#483d8b',  # Scorpio - dark slate blue
+        '--kerykeion-chart-color-zodiac-bg-11': '#4169e1', # Pisces - royal blue
+    }
+
+    for var_name, color in color_replacements.items():
+        svg_content = re.sub(
+            rf'{var_name}: #[0-9a-fA-F]{{6}};',
+            f'{var_name}: {color};',
+            svg_content
+        )
+
+    # Make aspect colors more vibrant and visible
+    aspect_color_replacements = {
+        '--kerykeion-chart-color-conjunction': '#5555ff',  # Bright blue
+        '--kerykeion-chart-color-sextile': '#ffa500',      # Orange
+        '--kerykeion-chart-color-square': '#ff0000',       # Pure red
+        '--kerykeion-chart-color-trine': '#00ff00',        # Bright green
+        '--kerykeion-chart-color-opposition': '#9932cc',   # Dark orchid
+    }
+
+    for var_name, color in aspect_color_replacements.items():
+        svg_content = re.sub(
+            rf'{var_name}: #[0-9a-fA-F]{{6}};',
+            f'{var_name}: {color};',
+            svg_content
+        )
+
+    return svg_content
+
+
+def _improve_typography(svg_content: str) -> str:
+    """Improve typography and text rendering.
+
+    Better font sizes, weights, and spacing for improved readability.
+    """
+    # Increase title font size for better hierarchy
+    svg_content = re.sub(
+        r"(kr:node='Chart_Title'[^>]*style='[^']*font-size:)\s*24px",
+        r"\1 28px; font-weight: 600",
+        svg_content
+    )
+
+    # Make planet symbols slightly larger
+    svg_content = re.sub(
+        r"(xlink:href='#(Sun|Moon|Mercury|Venus|Mars|Jupiter|Saturn|Uranus|Neptune|Pluto)'[^/]*/?>)",
+        lambda m: m.group(1).replace("scale(0.4)", "scale(0.45)") if "scale(0.4)" in m.group(1) else m.group(1),
+        svg_content
+    )
+
+    return svg_content
+
 def render_natal_chart(
     name: str,
     year: int,
@@ -196,17 +288,14 @@ def render_natal_chart(
     chart = KerykeionChartSVG(subject, chart_type="Natal")
     svg_content = chart.makeTemplate()
 
-    # Inject SF Pro font-family into SVG (Kerykeion templates have no explicit font)
-    svg_content = _inject_font_family(svg_content)
-
-    # Fix cusp alignment to be left-justified
-    svg_content = _fix_cusp_alignment(svg_content)
-
-    # Adjust planet grid spacing to prevent overlap
-    svg_content = _adjust_planet_grid_spacing(svg_content)
-
-    # Combine location label and city name onto single line
-    svg_content = _combine_location_line(svg_content)
+    # Apply visual enhancements
+    svg_content = _fix_viewbox_clipping(svg_content)      # Fix degree marker clipping
+    svg_content = _enhance_colors(svg_content)             # Vibrant color palette
+    svg_content = _inject_font_family(svg_content)         # SF Pro typography
+    svg_content = _improve_typography(svg_content)         # Better font sizes/weights
+    svg_content = _fix_cusp_alignment(svg_content)         # Left-justify cusps
+    svg_content = _adjust_planet_grid_spacing(svg_content) # Prevent overlap
+    svg_content = _combine_location_line(svg_content)      # Single-line location
 
     if output_format == "svg":
         return svg_content.encode('utf-8'), "image/svg+xml"
