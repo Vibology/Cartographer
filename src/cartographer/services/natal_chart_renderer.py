@@ -6,6 +6,7 @@ Matches the aesthetic of the bodygraph renderer.
 
 Phase 1: Basic wheel geometry, zodiac divisions, house cusps
 Phase 2: Planetary positions, symbols, degree labels
+Phase 3: Aspect lines, metadata panel, final polish
 """
 
 import matplotlib
@@ -121,6 +122,15 @@ PLANET_COLORS = {
     'Uranus': '#1ABC9C',   # Teal
     'Neptune': '#16A085',  # Sea green
     'Pluto': '#2C3E50'     # Almost black
+}
+
+# Aspect definitions (angle, orb, symbol, color)
+ASPECTS = {
+    'conjunction': {'angle': 0, 'orb': 8, 'symbol': '☌', 'color': '#E74C3C', 'linewidth': 2.0},
+    'sextile': {'angle': 60, 'orb': 6, 'symbol': '⚹', 'color': '#3498DB', 'linewidth': 1.0},
+    'square': {'angle': 90, 'orb': 8, 'symbol': '□', 'color': '#E67E22', 'linewidth': 1.5},
+    'trine': {'angle': 120, 'orb': 8, 'symbol': '△', 'color': '#27AE60', 'linewidth': 1.5},
+    'opposition': {'angle': 180, 'orb': 8, 'symbol': '☍', 'color': '#8E44AD', 'linewidth': 2.0}
 }
 
 # Canvas dimensions
@@ -415,10 +425,214 @@ def draw_planets(ax, center_x, center_y, planets_data, planet_radius):
         placed_positions.append((angle_matplotlib, adjusted_radius))
 
 
+def calculate_aspect_angle(pos1, pos2):
+    """
+    Calculate the angular distance between two zodiac positions.
+    Returns the smallest angle (0-180 degrees).
+    """
+    diff = abs(pos1 - pos2)
+    # Normalize to 0-180 range (shortest distance around the circle)
+    if diff > 180:
+        diff = 360 - diff
+    return diff
+
+
+def find_aspects(planets_data):
+    """
+    Find all major aspects between planets.
+
+    Returns:
+        List of tuples: (planet1_name, planet2_name, aspect_type, exact_angle)
+    """
+    aspects_found = []
+    planet_names = list(planets_data.keys())
+
+    for i, planet1 in enumerate(planet_names):
+        for planet2 in planet_names[i+1:]:
+            pos1 = planets_data[planet1]['position']
+            pos2 = planets_data[planet2]['position']
+
+            angle = calculate_aspect_angle(pos1, pos2)
+
+            # Check each aspect type
+            for aspect_name, aspect_info in ASPECTS.items():
+                target_angle = aspect_info['angle']
+                orb = aspect_info['orb']
+
+                # Calculate difference from exact aspect
+                diff = abs(angle - target_angle)
+
+                if diff <= orb:
+                    aspects_found.append((
+                        planet1,
+                        planet2,
+                        aspect_name,
+                        angle
+                    ))
+                    break  # Found an aspect, don't check others
+
+    return aspects_found
+
+
+def draw_aspects(ax, center_x, center_y, planets_data, aspect_radius):
+    """
+    Draw aspect lines connecting planets.
+
+    Args:
+        planets_data: Dict of planet positions
+        aspect_radius: Radius for aspect line endpoints (slightly inside planet positions)
+    """
+    aspects = find_aspects(planets_data)
+
+    for planet1, planet2, aspect_type, angle in aspects:
+        # Get positions
+        pos1 = planets_data[planet1]['position']
+        pos2 = planets_data[planet2]['position']
+
+        # Convert to matplotlib angles
+        angle1_rad = np.radians(180 - pos1)
+        angle2_rad = np.radians(180 - pos2)
+
+        # Calculate line endpoints
+        x1 = center_x + aspect_radius * np.cos(angle1_rad)
+        y1 = center_y + aspect_radius * np.sin(angle1_rad)
+        x2 = center_x + aspect_radius * np.cos(angle2_rad)
+        y2 = center_y + aspect_radius * np.sin(angle2_rad)
+
+        # Get aspect styling
+        aspect_info = ASPECTS[aspect_type]
+        color = aspect_info['color']
+        linewidth = aspect_info['linewidth']
+
+        # Draw aspect line
+        ax.plot(
+            [x1, x2], [y1, y2],
+            color=color,
+            linewidth=linewidth,
+            alpha=0.4,  # Semi-transparent to avoid cluttering
+            zorder=5,  # Behind planets but above background
+            linestyle='-'
+        )
+
+
+def draw_metadata_panel(ax, astro_data, canvas_width, y_position):
+    """
+    Draw metadata panel with birth data and chart information.
+
+    Args:
+        astro_data: Full astrology data
+        canvas_width: Width of canvas
+        y_position: Y position for top of panel
+    """
+    font = get_font()
+
+    # Extract metadata
+    name = astro_data.get('name', 'Natal Chart')
+    birth_data = astro_data.get('birth_data', {})
+    houses = astro_data.get('houses', {})
+
+    # Format birth date/time
+    if birth_data:
+        date_str = birth_data.get('date', '')
+        time_str = birth_data.get('time', '')
+        location = birth_data.get('location', '')
+        birth_info = f"{date_str} • {time_str} • {location}"
+    else:
+        birth_info = ""
+
+    # Get ASC and MC
+    asc_degree = houses.get('house_1', 0)
+    mc_degree = houses.get('house_10', 0)
+
+    # Convert to sign and degree
+    def format_zodiac_position(longitude):
+        signs = ['Ari', 'Tau', 'Gem', 'Can', 'Leo', 'Vir',
+                'Lib', 'Sco', 'Sag', 'Cap', 'Aqu', 'Pis']
+        sign_index = int(longitude / 30)
+        degree = int(longitude % 30)
+        minute = int((longitude % 1) * 60)
+        return f"{degree}°{minute:02d}' {signs[sign_index]}"
+
+    asc_str = format_zodiac_position(asc_degree)
+    mc_str = format_zodiac_position(mc_degree)
+
+    # Panel background
+    panel_height = 60
+    panel = FancyBboxPatch(
+        (10, y_position),
+        canvas_width - 20,
+        panel_height,
+        boxstyle="round,pad=0.02,rounding_size=6",
+        facecolor='#FAFBFC',
+        edgecolor='#E8EBED',
+        linewidth=1.5,
+        alpha=0.95,
+        zorder=20
+    )
+    ax.add_patch(panel)
+
+    # Name (centered, top)
+    ax.text(
+        canvas_width / 2,
+        y_position + 15,
+        name,
+        fontsize=14,
+        fontweight='bold',
+        ha='center',
+        va='center',
+        color='#2C3E50',
+        fontfamily=font,
+        zorder=21
+    )
+
+    # Birth info (centered, middle)
+    if birth_info:
+        ax.text(
+            canvas_width / 2,
+            y_position + 32,
+            birth_info,
+            fontsize=9,
+            ha='center',
+            va='center',
+            color='#7F8C8D',
+            fontfamily=font,
+            zorder=21
+        )
+
+    # ASC and MC (bottom corners)
+    ax.text(
+        30,
+        y_position + 48,
+        f"ASC: {asc_str}",
+        fontsize=9,
+        ha='left',
+        va='center',
+        color='#34495E',
+        fontfamily=font,
+        fontweight='bold',
+        zorder=21
+    )
+
+    ax.text(
+        canvas_width - 30,
+        y_position + 48,
+        f"MC: {mc_str}",
+        fontsize=9,
+        ha='right',
+        va='center',
+        color='#34495E',
+        fontfamily=font,
+        fontweight='bold',
+        zorder=21
+    )
+
+
 def generate_natal_chart_image(
     astro_data: dict,
     layout: str = "square",
-    fmt: str = "svg"
+    fmt: str = "svg",
+    include_aspects: bool = True,
+    include_metadata: bool = True
 ) -> bytes:
     """
     Generate natal chart visualization.
@@ -427,6 +641,8 @@ def generate_natal_chart_image(
         astro_data: Astrology data from get_astro_data.py (Kerykeion format)
         layout: "square" (700×700) for now, more options in later phases
         fmt: Output format ("svg", "png")
+        include_aspects: Draw aspect lines between planets
+        include_metadata: Include metadata panel with birth data
 
     Returns:
         Image bytes
@@ -466,9 +682,9 @@ def generate_natal_chart_image(
     # Extract and draw planets
     # astro_data format: {'planets': [{'name': 'Sun', 'longitude': 84.38, ...}, ...]}
     planets_list = astro_data.get('planets', [])
+    planets_data = {}
     if planets_list:
         # Convert list to dict keyed by planet name
-        planets_data = {}
         for planet in planets_list:
             planet_name = planet.get('name', '')
             if planet_name:
@@ -477,7 +693,18 @@ def generate_natal_chart_image(
                     'sign': planet.get('sign', ''),
                     'retrograde': planet.get('retrograde', False)
                 }
+
+        # Draw aspect lines (behind planets)
+        if include_aspects and len(planets_data) > 1:
+            aspect_radius = HOUSE_RING_INNER + 10  # Just inside innermost content
+            draw_aspects(ax, CENTER_X, CENTER_Y, planets_data, aspect_radius)
+
+        # Draw planets (on top of aspects)
         draw_planets(ax, CENTER_X, CENTER_Y, planets_data, PLANET_RING_RADIUS)
+
+    # Draw metadata panel at top
+    if include_metadata:
+        draw_metadata_panel(ax, astro_data, CANVAS_SIZE, 10)
 
     # Save to buffer
     buf = io.BytesIO()
