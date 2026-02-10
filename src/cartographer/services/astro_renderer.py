@@ -425,17 +425,21 @@ def render_minimal_natal_chart(
     lng: float,
     tz_str: str,
     house_system: str = "P",
-    city: str = None
+    city: str = None,
+    chart_type: str = "wheel"
 ):
     """
     Render minimal natal chart with ONLY geometry (no text labels).
 
-    Generates natal wheel showing:
-    - Zodiac circle with house lines
-    - Aspect lines
-    - Planet glyphs at positions
+    Args:
+        chart_type: "wheel" for wheel only, "aspects" for aspect grid only, "both" for combined
 
-    NO text overlays (degrees, house numbers, sign names, etc.)
+    Returns natal wheel or aspect grid showing:
+    - Zodiac circle with house lines (wheel)
+    - Planet glyphs at positions (wheel)
+    - Aspect grid (aspects)
+    - NO text overlays (degrees, house numbers, sign names, etc.)
+
     Pure geometric visualization for use with SwiftUI native data display.
 
     Returns:
@@ -443,7 +447,8 @@ def render_minimal_natal_chart(
     """
     import xml.etree.ElementTree as ET
 
-    # Generate full natal chart SVG
+    # For now, generate the full chart and strip text
+    # TODO: Implement proper wheel-only and aspects-only separation
     svg_content, _ = render_natal_chart(
         name=name,
         year=year,
