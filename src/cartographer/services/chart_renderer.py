@@ -1548,7 +1548,7 @@ def draw_chart(chart_data, layout_data, include_panels=True, include_summary=Tru
 
     # Figure setup
     aspect = canvas_h / canvas_w
-    fig_width = 15  # Increased from 10 for larger output (50% bigger)
+    fig_width = 10
     fig_height = fig_width * aspect
 
     fig, ax = plt.subplots(figsize=(fig_width, fig_height), dpi=150)
