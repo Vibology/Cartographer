@@ -224,8 +224,8 @@ DARK_PERSONALITY_TEXT = "#4488FF"  # Electric blue (distinct from all centers)
 DARK_PERSONALITY_HEADER = "#66AAFF"  # Bright electric blue
 
 # Canvas Dimensions
-BODYGRAPH_W = 360  # Increased 50% from 240 for better width filling
-BODYGRAPH_H = 480  # Increased 50% from 320 (maintains 4:3 aspect ratio)
+BODYGRAPH_W = 240
+BODYGRAPH_H = 320  # Original height - matches SVG geometry
 PANEL_WIDTH = 58
 SUMMARY_HEIGHT = 0  # Summary panel disabled
 
@@ -1548,7 +1548,7 @@ def draw_chart(chart_data, layout_data, include_panels=True, include_summary=Tru
 
     # Figure setup
     aspect = canvas_h / canvas_w
-    fig_width = 10
+    fig_width = 15  # Increased from 10 for larger output (50% bigger)
     fig_height = fig_width * aspect
 
     fig, ax = plt.subplots(figsize=(fig_width, fig_height), dpi=150)
