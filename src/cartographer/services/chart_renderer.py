@@ -70,7 +70,7 @@ def get_symbol_font():
 LAYOUT_FILE = "layout_data.json"
 EXALTATIONS_FILE = "exaltations_detriments.json"
 
-# Luminous Chakra Color Palette - with glow colors
+# Luminous Chakra Color Palette - Light Mode (Traditional HD colors)
 CENTER_COLORS = {
     "Head": {
         "defined": "#B57EDC",      # Soft violet
@@ -119,13 +119,70 @@ CENTER_COLORS = {
     },
 }
 
+# Dark Mode Center Colors - Rich jewel tones (muted but beautiful)
+# Philosophy: Deep, sophisticated colors that don't compete with activations
+# Think: Aged stained glass, gemstones, velvet - rich but restrained
+DARK_CENTER_COLORS = {
+    "Head": {
+        "defined": "#AA77DD",      # Deep amethyst (rich violet, not bright purple)
+        "glow": "#BB88DD",         # Subtle violet glow
+        "stroke": "#9966CC",
+    },
+    "Ajna": {
+        "defined": "#8899CC",      # Deep indigo (rich blue-purple, not bright)
+        "glow": "#99AADD",         # Subtle indigo glow
+        "stroke": "#7788BB",
+    },
+    "Throat": {
+        "defined": "#6699DD",      # Deep cerulean (rich sky blue, not electric)
+        "glow": "#77AAEE",         # Subtle blue glow
+        "stroke": "#5588CC",
+    },
+    "G": {
+        "defined": "#EEBB66",      # Deep gold (rich warm yellow, not neon)
+        "glow": "#FFCC77",         # Subtle gold glow
+        "stroke": "#DDAA55",
+    },
+    "Heart": {
+        "defined": "#77CC99",      # Deep emerald (rich green, not bright)
+        "glow": "#88DDAA",         # Subtle green glow
+        "stroke": "#66BB88",
+    },
+    "SolarPlexus": {
+        "defined": "#EEBB77",      # Deep amber (rich warm orange, not bright)
+        "glow": "#FFCC88",         # Subtle amber glow
+        "stroke": "#DDAA66",
+    },
+    "Spleen": {
+        "defined": "#66BBAA",      # Deep jade (rich teal, not electric)
+        "glow": "#77CCBB",         # Subtle teal glow
+        "stroke": "#55AA99",
+    },
+    "Sacral": {
+        "defined": "#EE9988",      # Deep coral (rich warm orange-pink, not neon)
+        "glow": "#FFAA99",         # Subtle coral glow
+        "stroke": "#DD8877",
+    },
+    "Root": {
+        "defined": "#BB8866",      # Deep sienna (rich earth tone, not pale)
+        "glow": "#CC9977",         # Subtle brown glow
+        "stroke": "#AA7755",
+    },
+}
+
 UNDEFINED_CENTER = {
     "fill": "#FDFEFE",
     "stroke": "#D5D8DC",
     "glow": None
 }
 
-# Channel and Gate Colors
+DARK_UNDEFINED_CENTER = {
+    "fill": "#252525",
+    "stroke": "#404040",
+    "glow": None
+}
+
+# Channel and Gate Colors (Light Mode)
 COLOR_DESIGN = "#C0392B"       # Deep crimson for Design
 COLOR_PERSONALITY = "#2C3E50"  # Deep slate for Personality
 COLOR_BODY_BG = "#E8E8E8"      # Soft gray body
@@ -133,9 +190,38 @@ COLOR_BODY_STROKE = "#BDC3C7"
 COLOR_CHANNEL_INACTIVE = "#C8CDD2"  # More visible gray for undefined channels
 COLOR_CHANNEL_GLOW = "#D6DBDF"
 
-# Background
+# Background (Light Mode)
 COLOR_BG_GRADIENT_START = "#FDFEFE"
 COLOR_BG_GRADIENT_END = "#F4F6F7"
+
+# Dark Mode Colors (Comprehensive luminous redesign)
+# Body & Structure
+DARK_BODY_BG = "#404040"           # Medium gray - visible structure
+DARK_BODY_STROKE = "#808080"       # Bright outline - clearly defined
+DARK_BODY_GLOW_1 = "#555555"       # Stronger outer glow
+DARK_BODY_GLOW_2 = "#4A4A4A"       # Stronger inner glow
+
+# Channels
+DARK_CHANNEL_INACTIVE = "#888888"  # Quite visible - shows anatomy
+DARK_CHANNEL_GLOW = "#666666"      # Subtle luminosity
+
+# Centers
+DARK_UNDEFINED_CENTER_FILL = "#2A2A2A"  # Darker than body - creates depth
+DARK_UNDEFINED_CENTER_STROKE = "#606060"  # Visible borders
+
+# Gate Numbers
+DARK_GATE_INACTIVE_COLOR = "#CCCCCC"   # Very light gray for inactive gates on dark background
+# Note: Active gates always use black text (#1A1A1A) on white circles in both modes
+
+# Background
+DARK_BG_GRADIENT_START = "#1A1A1A"
+DARK_BG_GRADIENT_END = "#242424"
+
+# Panel Text Colors (Luminous accents - non-overlapping with center colors)
+DARK_DESIGN_TEXT = "#FF40BF"       # Pure magenta (distinct from all centers)
+DARK_DESIGN_HEADER = "#FF66CC"     # Bright magenta
+DARK_PERSONALITY_TEXT = "#4488FF"  # Electric blue (distinct from all centers)
+DARK_PERSONALITY_HEADER = "#66AAFF"  # Bright electric blue
 
 # Canvas Dimensions
 BODYGRAPH_W = 240
@@ -514,11 +600,16 @@ def svg_to_mpl_path(svg_d):
     return parse_path(svg_d)
 
 
-def get_center_colors(center_name, is_defined):
+def get_center_colors(center_name, is_defined, dark_mode=False):
     """Get fill, stroke, and glow colors for a center."""
     if is_defined:
-        colors = CENTER_COLORS.get(center_name, CENTER_COLORS["G"])
+        # Use vibrant dark mode colors or traditional light mode colors
+        color_set = DARK_CENTER_COLORS if dark_mode else CENTER_COLORS
+        colors = color_set.get(center_name, color_set["G"])
         return colors["defined"], colors["stroke"], colors.get("glow")
+
+    if dark_mode:
+        return DARK_UNDEFINED_CENTER["fill"], DARK_UNDEFINED_CENTER["stroke"], DARK_UNDEFINED_CENTER["glow"]
     return UNDEFINED_CENTER["fill"], UNDEFINED_CENTER["stroke"], UNDEFINED_CENTER["glow"]
 
 
@@ -563,14 +654,17 @@ def draw_rect_glow(ax, x, y, w, h, color, layers=3, offset_x=0):
         ax.add_patch(glow_rect)
 
 
-def draw_background_gradient(ax, width, height):
+def draw_background_gradient(ax, width, height, dark_mode=False):
     """Draw a subtle gradient background."""
     # Create gradient using imshow
     gradient = np.linspace(0, 1, 256).reshape(1, -1)
     gradient = np.vstack([gradient] * 256)
 
     # Define colormap from light to slightly darker
-    cmap = LinearSegmentedColormap.from_list('bg', [COLOR_BG_GRADIENT_START, COLOR_BG_GRADIENT_END])
+    if dark_mode:
+        cmap = LinearSegmentedColormap.from_list('bg', [DARK_BG_GRADIENT_START, DARK_BG_GRADIENT_END])
+    else:
+        cmap = LinearSegmentedColormap.from_list('bg', [COLOR_BG_GRADIENT_START, COLOR_BG_GRADIENT_END])
 
     ax.imshow(
         gradient.T,
@@ -582,7 +676,7 @@ def draw_background_gradient(ax, width, height):
     )
 
 
-def draw_body_outline(ax, layout_data, offset_x=0):
+def draw_body_outline(ax, layout_data, offset_x=0, dark_mode=False):
     """Draw the ethereal body silhouette with ambient glow."""
     body_d = layout_data.get('body_outline', "")
     if not body_d:
@@ -591,8 +685,18 @@ def draw_body_outline(ax, layout_data, offset_x=0):
     path = svg_to_mpl_path(body_d)
     transform = matplotlib.transforms.Affine2D().translate(offset_x, 0) + ax.transData
 
-    # Ambient ethereal glow - soft lavender/white radiance
-    glow_color = '#B8C5D6'  # Soft blue-gray
+    # Ambient ethereal glow - adapted for light/dark mode
+    if dark_mode:
+        glow_color = DARK_BODY_GLOW_1
+        inner_glow_color = DARK_BODY_GLOW_2
+        body_bg = DARK_BODY_BG
+        body_stroke = DARK_BODY_STROKE
+    else:
+        glow_color = '#B8C5D6'  # Soft blue-gray
+        inner_glow_color = '#D4DCE8'
+        body_bg = COLOR_BODY_BG
+        body_stroke = COLOR_BODY_STROKE
+
     for i in range(6, 0, -1):
         glow_patch = PathPatch(
             path,
@@ -606,7 +710,6 @@ def draw_body_outline(ax, layout_data, offset_x=0):
         ax.add_patch(glow_patch)
 
     # Inner glow - slightly warmer
-    inner_glow_color = '#D4DCE8'
     for i in range(3, 0, -1):
         glow_patch = PathPatch(
             path,
@@ -622,8 +725,8 @@ def draw_body_outline(ax, layout_data, offset_x=0):
     # Main body fill with soft edge
     patch = PathPatch(
         path,
-        facecolor=COLOR_BODY_BG,
-        edgecolor=COLOR_BODY_STROKE,
+        facecolor=body_bg,
+        edgecolor=body_stroke,
         linewidth=1.2,
         alpha=0.9,
         zorder=0,
@@ -632,12 +735,20 @@ def draw_body_outline(ax, layout_data, offset_x=0):
     ax.add_patch(patch)
 
 
-def draw_channels(ax, chart_data, layout_data, offset_x=0):
+def draw_channels(ax, chart_data, layout_data, offset_x=0, dark_mode=False):
     """Draw channels with luminous effects for active ones."""
     design_gates, personality_gates, _, _ = normalize_gates_data(chart_data)
     channels_layout = layout_data.get('channels', {})
 
     transform = matplotlib.transforms.Affine2D().translate(offset_x, 0) + ax.transData
+
+    # Select colors based on mode
+    channel_inactive = DARK_CHANNEL_INACTIVE if dark_mode else COLOR_CHANNEL_INACTIVE
+    channel_glow = DARK_CHANNEL_GLOW if dark_mode else COLOR_CHANNEL_GLOW
+
+    # Activation colors match panel text colors
+    design_color = DARK_DESIGN_TEXT if dark_mode else COLOR_DESIGN
+    personality_color = DARK_PERSONALITY_TEXT if dark_mode else COLOR_PERSONALITY
 
     for gate_id_str, geo_data in channels_layout.items():
         gate_id = int(gate_id_str)
@@ -651,7 +762,7 @@ def draw_channels(ax, chart_data, layout_data, offset_x=0):
         patch_bg = PathPatch(
             mpl_path,
             facecolor='none',
-            edgecolor=COLOR_CHANNEL_INACTIVE,
+            edgecolor=channel_inactive,
             linewidth=3.0,
             capstyle='round',
             alpha=0.85,
@@ -670,7 +781,7 @@ def draw_channels(ax, chart_data, layout_data, offset_x=0):
         glow_patch = PathPatch(
             mpl_path,
             facecolor='none',
-            edgecolor=COLOR_CHANNEL_GLOW,
+            edgecolor=channel_glow,
             linewidth=6,
             capstyle='round',
             alpha=0.3,
@@ -684,7 +795,7 @@ def draw_channels(ax, chart_data, layout_data, offset_x=0):
             patch_red = PathPatch(
                 mpl_path,
                 facecolor='none',
-                edgecolor=COLOR_DESIGN,
+                edgecolor=design_color,
                 linewidth=3.5,
                 capstyle='round',
                 zorder=1,
@@ -694,7 +805,7 @@ def draw_channels(ax, chart_data, layout_data, offset_x=0):
             patch_blk = PathPatch(
                 mpl_path,
                 facecolor='none',
-                edgecolor=COLOR_PERSONALITY,
+                edgecolor=personality_color,
                 linewidth=3.5,
                 linestyle=(0, (0.5, 2)),  # Tiny frequent dashes - visible striping pattern
                 capstyle='round',
@@ -706,7 +817,7 @@ def draw_channels(ax, chart_data, layout_data, offset_x=0):
             patch = PathPatch(
                 mpl_path,
                 facecolor='none',
-                edgecolor=COLOR_DESIGN,
+                edgecolor=design_color,
                 linewidth=3.5,
                 capstyle='round',
                 zorder=1,
@@ -717,7 +828,7 @@ def draw_channels(ax, chart_data, layout_data, offset_x=0):
             patch = PathPatch(
                 mpl_path,
                 facecolor='none',
-                edgecolor=COLOR_PERSONALITY,
+                edgecolor=personality_color,
                 linewidth=3.5,
                 capstyle='round',
                 zorder=1,
@@ -726,7 +837,7 @@ def draw_channels(ax, chart_data, layout_data, offset_x=0):
             ax.add_patch(patch)
 
 
-def draw_centers(ax, chart_data, layout_data, offset_x=0):
+def draw_centers(ax, chart_data, layout_data, offset_x=0, dark_mode=False):
     """Draw centers with luminous glow effects."""
     defined_centers = set(chart_data['general'].get('defined_centers', []))
 
@@ -739,7 +850,7 @@ def draw_centers(ax, chart_data, layout_data, offset_x=0):
     for name, data in centers_layout.items():
         json_name = name if name != "G" else "G_Center"
         is_defined = json_name in defined_centers or name in defined_centers
-        fill_c, stroke_c, glow_c = get_center_colors(name, is_defined)
+        fill_c, stroke_c, glow_c = get_center_colors(name, is_defined, dark_mode)
 
         stroke_width = 2.0 if is_defined else 1.2
 
@@ -799,7 +910,7 @@ def get_gate_center(gate_id):
     return "G"
 
 
-def draw_gate_numbers(ax, chart_data, layout_data, offset_x=0):
+def draw_gate_numbers(ax, chart_data, layout_data, offset_x=0, dark_mode=False):
     """Draw gate numbers with split-aspect activation border indicators."""
     font = get_font()
     gate_coords = layout_data.get('gates_coords', {})
@@ -809,6 +920,10 @@ def draw_gate_numbers(ax, chart_data, layout_data, offset_x=0):
     if "Anja" in defined_centers:
         defined_centers.remove("Anja")
         defined_centers.add("Ajna")
+
+    # Activation colors match panel text colors
+    design_color = DARK_DESIGN_TEXT if dark_mode else COLOR_DESIGN
+    personality_color = DARK_PERSONALITY_TEXT if dark_mode else COLOR_PERSONALITY
 
     for gate_id_str, pt in gate_coords.items():
         gate_id = int(gate_id_str)
@@ -827,7 +942,7 @@ def draw_gate_numbers(ax, chart_data, layout_data, offset_x=0):
             json_center_name = center_name if center_name != "G" else "G_Center"
             is_center_defined = json_center_name in defined_centers or center_name in defined_centers
 
-            _, stroke_color, glow_color = get_center_colors(center_name, is_center_defined)
+            _, stroke_color, glow_color = get_center_colors(center_name, is_center_defined, dark_mode)
 
             if not is_center_defined:
                 stroke_color = "#9B59B6"
@@ -856,54 +971,54 @@ def draw_gate_numbers(ax, chart_data, layout_data, offset_x=0):
             )
             ax.add_patch(circ)
 
-            # Activation-based border: split red/black for both aspects, full color for single aspect
+            # Activation-based border: split design/personality for both aspects, full color for single aspect
             if is_design and is_personality:
-                # Both aspects: half red (left), half black (right)
+                # Both aspects: half design (left), half personality (right)
                 from matplotlib.patches import Arc
 
-                arc_red = Arc(
+                arc_design = Arc(
                     (center_x, center_y),
                     radius * 2, radius * 2,
                     angle=0,
                     theta1=90,  # Start at top
                     theta2=270,  # End at bottom (left half)
-                    color=COLOR_DESIGN,
+                    color=design_color,
                     linewidth=2.0,
                     zorder=21
                 )
-                ax.add_patch(arc_red)
+                ax.add_patch(arc_design)
 
-                arc_black = Arc(
+                arc_personality = Arc(
                     (center_x, center_y),
                     radius * 2, radius * 2,
                     angle=0,
                     theta1=270,  # Start at bottom
                     theta2=450,  # End at top (right half)
-                    color=COLOR_PERSONALITY,
+                    color=personality_color,
                     linewidth=2.0,
                     zorder=21
                 )
-                ax.add_patch(arc_black)
+                ax.add_patch(arc_personality)
 
             elif is_design:
-                # Design only: full red border
+                # Design only: full border
                 border = Circle(
                     (center_x, center_y),
                     radius=radius,
                     facecolor='none',
-                    edgecolor=COLOR_DESIGN,
+                    edgecolor=design_color,
                     linewidth=2.0,
                     zorder=21
                 )
                 ax.add_patch(border)
 
             elif is_personality:
-                # Personality only: full black border
+                # Personality only: full border
                 border = Circle(
                     (center_x, center_y),
                     radius=radius,
                     facecolor='none',
-                    edgecolor=COLOR_PERSONALITY,
+                    edgecolor=personality_color,
                     linewidth=2.0,
                     zorder=21
                 )
@@ -911,7 +1026,14 @@ def draw_gate_numbers(ax, chart_data, layout_data, offset_x=0):
 
         fontsize = 5.8 if is_active else 4.2
         fontweight = 'bold' if is_active else 'normal'
-        color = '#1A1A1A' if is_active else '#7F8C8D'
+
+        # Gate number color
+        if is_active:
+            # Active gates have white circles - use black text for contrast (both modes)
+            color = '#1A1A1A'
+        else:
+            # Inactive gates - adapt for dark mode background
+            color = DARK_GATE_INACTIVE_COLOR if dark_mode else '#7F8C8D'
 
         ax.text(
             center_x, center_y,
@@ -960,7 +1082,7 @@ def load_alchemical_symbol_path(symbol_name):
     return None, None, None
 
 
-def draw_planetary_panel(ax, planets_data, x_start, is_design=True, panel_width=PANEL_WIDTH, variables=None, exaltations=None, opposite_planets_data=None, channels=None):
+def draw_planetary_panel(ax, planets_data, x_start, is_design=True, panel_width=PANEL_WIDTH, variables=None, exaltations=None, opposite_planets_data=None, channels=None, dark_mode=False):
     """Draw an elegant side panel with planetary activations (Neutrino Design style)."""
     font = get_font()
     symbol_font = get_symbol_font()
@@ -1022,26 +1144,48 @@ def draw_planetary_panel(ax, planets_data, x_start, is_design=True, panel_width=
     panel_top = 8
     panel_height = header_height + (num_planets * cell_height) + 4
 
-    # Red/Black color scheme matching gate activations
-    if is_design:
-        # Design Panel: Red palette (matches red gate activations)
-        panel_color = '#FFF5F5'      # Very light red/pink
-        panel_border = '#C45555'     # Muted red
-        cell_border = '#E8B8B8'      # Subtle red divider
-        header_border = '#A03030'    # Deep red
-        row_alt_color = '#FFF0F0'    # Alternating row tint (subtle red)
+    # Magenta/Electric Blue color scheme matching gate activations (with dark mode support)
+    if dark_mode:
+        if is_design:
+            # Design Panel (dark mode): Luminous magenta palette
+            panel_color = '#2A182A'      # Deep magenta tint background
+            panel_border = '#DD44BB'     # Vibrant magenta border (matches activations)
+            cell_border = '#442244'      # Subtle magenta divider
+            header_border = '#DD44BB'    # Vibrant magenta
+            row_alt_color = '#321E32'    # Alternating row tint (magenta)
+            header_color = DARK_DESIGN_HEADER  # Bright magenta
+            text_color = DARK_DESIGN_TEXT      # Pure magenta
+        else:
+            # Personality Panel (dark mode): Luminous electric blue palette
+            panel_color = '#1A2035'      # Deep blue tint background
+            panel_border = '#5588DD'     # Electric blue border (matches activations)
+            cell_border = '#2A3550'      # Subtle blue divider
+            header_border = '#5588DD'    # Electric blue
+            row_alt_color = '#1F2840'    # Alternating row tint (blue)
+            header_color = DARK_PERSONALITY_HEADER  # Bright electric blue
+            text_color = DARK_PERSONALITY_TEXT      # Electric blue
     else:
-        # Personality Panel: Black/grey palette (matches black gate activations)
-        panel_color = '#F8F8F8'      # Very light grey
-        panel_border = '#606060'     # Medium grey
-        cell_border = '#D0D0D0'      # Subtle grey divider
-        header_border = '#303030'    # Deep grey/black
-        row_alt_color = '#F0F0F0'    # Alternating row tint (subtle grey)
-
-    header_color = COLOR_DESIGN if is_design else COLOR_PERSONALITY
-    text_color = COLOR_DESIGN if is_design else COLOR_PERSONALITY
+        if is_design:
+            # Design Panel (light mode): Red palette (matches red gate activations)
+            panel_color = '#FFF5F5'      # Very light red/pink
+            panel_border = '#C45555'     # Muted red
+            cell_border = '#E8B8B8'      # Subtle red divider
+            header_border = '#A03030'    # Deep red
+            row_alt_color = '#FFF0F0'    # Alternating row tint (subtle red)
+            header_color = COLOR_DESIGN
+            text_color = COLOR_DESIGN
+        else:
+            # Personality Panel (light mode): Black/grey palette (matches black gate activations)
+            panel_color = '#F8F8F8'      # Very light grey
+            panel_border = '#606060'     # Medium grey
+            cell_border = '#D0D0D0'      # Subtle grey divider
+            header_border = '#303030'    # Deep grey/black
+            row_alt_color = '#F0F0F0'    # Alternating row tint (subtle grey)
+            header_color = COLOR_PERSONALITY
+            text_color = COLOR_PERSONALITY
 
     # Panel outer border with stronger definition
+    border_width = 2.5 if dark_mode else 2.0  # Slightly thicker in dark mode
     outer_rect = FancyBboxPatch(
         (x_start + 2, panel_top),
         panel_width - 4,
@@ -1049,7 +1193,7 @@ def draw_planetary_panel(ax, planets_data, x_start, is_design=True, panel_width=
         boxstyle="round,pad=0.02,rounding_size=4",
         facecolor=panel_color,
         edgecolor=panel_border,
-        linewidth=2.0,  # Increased from 1.5 for stronger definition
+        linewidth=border_width,
         zorder=1
     )
     ax.add_patch(outer_rect)
@@ -1060,8 +1204,8 @@ def draw_planetary_panel(ax, planets_data, x_start, is_design=True, panel_width=
     symbol_name = 'salt' if is_design else 'sulphur'
     symbol_path, vb_width, vb_height = load_alchemical_symbol_path(symbol_name)
 
-    # Accent color for separator
-    accent_color = panel_border  # Red for Design, grey for Personality
+    # Accent color for separator (use vibrant border color in dark mode)
+    accent_color = panel_border
 
     # Header text
     if is_design:
@@ -1090,15 +1234,16 @@ def draw_planetary_panel(ax, planets_data, x_start, is_design=True, panel_width=
 
     header_text_y = header_y + 8  # Position separator below header elements
 
-    # Warmer, more visible separator line below header
+    # Vibrant separator line below header
     separator_y = header_text_y + 3  # 3 pixels below symbol/text
+    separator_alpha = 0.9 if dark_mode else 0.7  # More vibrant in dark mode
     ax.plot(
         [x_start + 8, x_start + panel_width - 8],  # Inset from edges
         [separator_y, separator_y],
-        color=accent_color,  # Use accent color instead of header_border
-        linewidth=1.5,  # Slightly thicker
-        alpha=0.7,  # More opaque (was 0.4)
-        solid_capstyle='round',  # Rounded ends
+        color=accent_color,  # Vibrant border color
+        linewidth=1.5,
+        alpha=separator_alpha,
+        solid_capstyle='round',
         zorder=2
     )
 
@@ -1376,9 +1521,16 @@ def draw_summary_panel(ax, chart_data, canvas_width, y_start):
                 fontweight='bold', ha='center', va='center', fontfamily='monospace', zorder=20)
 
 
-def draw_chart(chart_data, layout_data, include_panels=True, include_summary=True):
+def draw_chart(chart_data, layout_data, include_panels=True, include_summary=True, dark_mode=False):
     """
     Main chart drawing function with luminous/ethereal style.
+
+    Args:
+        chart_data: Chart data dictionary
+        layout_data: Layout geometry data
+        include_panels: Whether to include planetary panels
+        include_summary: Whether to include summary panel
+        dark_mode: Whether to use dark mode colors
     """
     # Ensure chart data has all necessary fields (derive defined_centers, strategy, etc.)
     chart_data = ensure_chart_data_complete(chart_data)
@@ -1419,24 +1571,26 @@ def draw_chart(chart_data, layout_data, include_panels=True, include_summary=Tru
         # Draw Design panel (with Personality as opposite for harmonic fixing)
         draw_planetary_panel(ax, design_planets, 0, is_design=True,
                            variables=variables, exaltations=exaltations,
-                           opposite_planets_data=personality_planets, channels=channels)
+                           opposite_planets_data=personality_planets, channels=channels,
+                           dark_mode=dark_mode)
 
         # Draw Personality panel (with Design as opposite for harmonic fixing)
         draw_planetary_panel(ax, personality_planets, canvas_w - PANEL_WIDTH, is_design=False,
                            variables=variables, exaltations=exaltations,
-                           opposite_planets_data=design_planets, channels=channels)
+                           opposite_planets_data=design_planets, channels=channels,
+                           dark_mode=dark_mode)
 
     # Body silhouette
-    draw_body_outline(ax, layout_data, bodygraph_offset_x)
+    draw_body_outline(ax, layout_data, bodygraph_offset_x, dark_mode=dark_mode)
 
     # Channels
-    draw_channels(ax, chart_data, layout_data, bodygraph_offset_x)
+    draw_channels(ax, chart_data, layout_data, bodygraph_offset_x, dark_mode=dark_mode)
 
     # Centers with glow
-    draw_centers(ax, chart_data, layout_data, bodygraph_offset_x)
+    draw_centers(ax, chart_data, layout_data, bodygraph_offset_x, dark_mode=dark_mode)
 
     # Gate numbers
-    draw_gate_numbers(ax, chart_data, layout_data, bodygraph_offset_x)
+    draw_gate_numbers(ax, chart_data, layout_data, bodygraph_offset_x, dark_mode=dark_mode)
 
     # Summary panel
     if include_summary:
@@ -1445,12 +1599,19 @@ def draw_chart(chart_data, layout_data, include_panels=True, include_summary=Tru
     return fig
 
 
-def generate_bodygraph_image(chart_data, fmt='png', include_panels=True, include_summary=False):
+def generate_bodygraph_image(chart_data, fmt='png', include_panels=True, include_summary=False, dark_mode=False):
     """
     Generates the BodyGraph image and returns it as bytes.
+
+    Args:
+        chart_data: Chart data dictionary
+        fmt: Output format ('png', 'svg', 'jpg')
+        include_panels: Whether to include planetary panels
+        include_summary: Whether to include summary panel
+        dark_mode: Whether to use dark mode colors
     """
     layout = load_json_layout()
-    fig = draw_chart(chart_data, layout, include_panels=include_panels, include_summary=include_summary)
+    fig = draw_chart(chart_data, layout, include_panels=include_panels, include_summary=include_summary, dark_mode=dark_mode)
 
     buf = io.BytesIO()
 
