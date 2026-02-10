@@ -412,3 +412,79 @@ def render_natal_chart(
     else:
         # Default to SVG
         return svg_content.encode('utf-8'), "image/svg+xml"
+
+
+def render_minimal_natal_chart(
+    name: str,
+    year: int,
+    month: int,
+    day: int,
+    hour: int,
+    minute: int,
+    lat: float,
+    lng: float,
+    tz_str: str,
+    house_system: str = "P",
+    city: str = None
+):
+    """
+    Render minimal natal chart with ONLY geometry (no text labels).
+
+    Generates natal wheel showing:
+    - Zodiac circle with house lines
+    - Aspect lines
+    - Planet glyphs at positions
+
+    NO text overlays (degrees, house numbers, sign names, etc.)
+    Pure geometric visualization for use with SwiftUI native data display.
+
+    Returns:
+        Tuple of (svg_bytes, media_type)
+    """
+    import xml.etree.ElementTree as ET
+
+    # Generate full natal chart SVG
+    svg_content, _ = render_natal_chart(
+        name=name,
+        year=year,
+        month=month,
+        day=day,
+        hour=hour,
+        minute=minute,
+        lat=lat,
+        lng=lng,
+        tz_str=tz_str,
+        output_format="svg",
+        house_system=house_system,
+        city=city
+    )
+
+    # Parse SVG and remove all text elements
+    svg_string = svg_content.decode('utf-8') if isinstance(svg_content, bytes) else svg_content
+
+    # Register Kerykeion namespace to preserve it during parsing
+    namespaces = {
+        'svg': 'http://www.w3.org/2000/svg',
+        'xlink': 'http://www.w3.org/1999/xlink',
+        'kr': 'http://kerykeion.net'
+    }
+
+    for prefix, uri in namespaces.items():
+        ET.register_namespace(prefix if prefix != 'svg' else '', uri)
+
+    # Parse SVG
+    root = ET.fromstring(svg_string.encode('utf-8'))
+
+    # Remove all <text> elements (preserving geometry and glyphs)
+    for text_elem in root.findall('.//{http://www.w3.org/2000/svg}text'):
+        parent = root.find('.//{http://www.w3.org/2000/svg}text/..', namespaces)
+        if parent is not None:
+            parent.remove(text_elem)
+        else:
+            # Text element is at root level
+            root.remove(text_elem)
+
+    # Convert back to string
+    minimal_svg = ET.tostring(root, encoding='unicode')
+
+    return minimal_svg.encode('utf-8'), "image/svg+xml"

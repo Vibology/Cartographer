@@ -14,7 +14,7 @@ from ..schemas.astrology import (
     ChartFormat
 )
 from ..services.astro_calculator import calculate_natal_chart
-from ..services.astro_renderer import render_natal_chart
+from ..services.astro_renderer import render_natal_chart, render_minimal_natal_chart
 
 router = APIRouter()
 
@@ -79,6 +79,49 @@ async def generate_chart(
             lng=lng,
             tz_str=tz_str,
             output_format=format.value,
+            house_system=house_system,
+            city=city
+        )
+        return Response(content=image_data, media_type=media_type)
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+@router.get("/chart/minimal")
+async def generate_minimal_chart(
+    name: str = Query(..., description="Person's name"),
+    year: int = Query(..., description="Birth year"),
+    month: int = Query(..., ge=1, le=12, description="Birth month (1-12)"),
+    day: int = Query(..., ge=1, le=31, description="Birth day"),
+    hour: int = Query(..., ge=0, le=23, description="Birth hour (0-23)"),
+    minute: int = Query(..., ge=0, le=59, description="Birth minute"),
+    lat: float = Query(..., description="Latitude"),
+    lng: float = Query(..., description="Longitude"),
+    tz_str: str = Query(..., description="Timezone (e.g., 'America/New_York')"),
+    house_system: str = Query("P", description="House system (P=Placidus, W=Whole Sign, etc.)"),
+    city: str = Query(None, description="City name (optional, will reverse geocode if not provided)")
+):
+    """
+    Generate minimal natal chart visualization (geometry only, no text).
+
+    Returns natal wheel SVG showing:
+    - Zodiac circle with house lines
+    - Aspect lines
+    - Planet glyphs at positions
+
+    NO text overlays (degrees, house numbers, sign names).
+    Designed for use with SwiftUI native data display.
+    """
+    try:
+        image_data, media_type = render_minimal_natal_chart(
+            name=name,
+            year=year,
+            month=month,
+            day=day,
+            hour=hour,
+            minute=minute,
+            lat=lat,
+            lng=lng,
+            tz_str=tz_str,
             house_system=house_system,
             city=city
         )
