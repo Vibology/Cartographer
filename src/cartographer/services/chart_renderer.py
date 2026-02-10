@@ -218,8 +218,8 @@ DARK_BG_GRADIENT_START = "#1A1A1A"
 DARK_BG_GRADIENT_END = "#242424"
 
 # Panel Text Colors (Luminous accents - non-overlapping with center colors)
-DARK_DESIGN_TEXT = "#FF40BF"       # Pure magenta (distinct from all centers)
-DARK_DESIGN_HEADER = "#FF66CC"     # Bright magenta
+DARK_DESIGN_TEXT = "#FF38B3"       # Warm magenta (matches Synthwave heading palette)
+DARK_DESIGN_HEADER = "#FF5CC6"     # Lighter warm magenta (header variant)
 DARK_PERSONALITY_TEXT = "#4488FF"  # Electric blue (distinct from all centers)
 DARK_PERSONALITY_HEADER = "#66AAFF"  # Bright electric blue
 
@@ -1149,9 +1149,9 @@ def draw_planetary_panel(ax, planets_data, x_start, is_design=True, panel_width=
         if is_design:
             # Design Panel (dark mode): Luminous magenta palette
             panel_color = '#2A182A'      # Deep magenta tint background
-            panel_border = '#DD44BB'     # Vibrant magenta border (matches activations)
-            cell_border = '#442244'      # Subtle magenta divider
-            header_border = '#DD44BB'    # Vibrant magenta
+            panel_border = '#DD309F'     # Warm magenta border (matches Synthwave palette)
+            cell_border = '#442240'      # Subtle warm magenta divider
+            header_border = '#DD309F'    # Warm magenta
             row_alt_color = '#321E32'    # Alternating row tint (magenta)
             header_color = DARK_DESIGN_HEADER  # Bright magenta
             text_color = DARK_DESIGN_TEXT      # Pure magenta
