@@ -224,8 +224,8 @@ DARK_PERSONALITY_TEXT = "#4488FF"  # Electric blue (distinct from all centers)
 DARK_PERSONALITY_HEADER = "#66AAFF"  # Bright electric blue
 
 # Canvas Dimensions
-BODYGRAPH_W = 240
-BODYGRAPH_H = 320  # Original height - matches SVG geometry
+BODYGRAPH_W = 360  # Increased 50% from 240 for better width filling
+BODYGRAPH_H = 480  # Increased 50% from 320 (maintains 4:3 aspect ratio)
 PANEL_WIDTH = 58
 SUMMARY_HEIGHT = 0  # Summary panel disabled
 
