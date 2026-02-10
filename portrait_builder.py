@@ -892,11 +892,11 @@ def build_portrait_chart(landscape_svg, theme='light'):
     # Adjust coordinates for aspect list
     aspect_list_content = adjust_aspect_coords(aspect_list_content)
 
-    # Build portrait SVG
+    # Build portrait SVG (extended height to 2210 for separated aspect grid)
     portrait = f"""<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:kr='https://www.kerykeion.net/'
-     width='800' height='1790' viewBox='0 0 800 1790'>
+     width='800' height='2210' viewBox='0 0 800 2210'>
     <title>Natal Chart - Portrait</title>
 
     {style}
@@ -930,11 +930,11 @@ def build_portrait_chart(landscape_svg, theme='light'):
 {qualities_content}    </g>
 
     <!-- 10. Aspect List (planet headers for aspect grid, full width from 20px edges) -->
-    <g kr:node='Aspect_List' transform='translate(20,980) scale(3.0)'>
+    <g kr:node='Aspect_List' transform='translate(20,1400) scale(3.0)'>
 {aspect_list_content}    </g>
 
     <!-- 11. Aspect Grid (full width from 20px edges, scaled to fit 760px) -->
-    <g kr:node='Aspect_Grid' transform='translate(20,980) scale(3.0)'>
+    <g kr:node='Aspect_Grid' transform='translate(20,1400) scale(3.0)'>
 {aspect_grid_content}    </g>
 
 </svg>"""
