@@ -227,7 +227,6 @@ DARK_PERSONALITY_HEADER = "#66AAFF"  # Bright electric blue
 BODYGRAPH_W = 240
 BODYGRAPH_H = 320  # Original height - matches SVG geometry
 PANEL_WIDTH = 58
-PANEL_SPACING = 36  # Space between body and panels (per side) - achieves 4:3 aspect ratio
 SUMMARY_HEIGHT = 0  # Summary panel disabled
 
 # Planet Symbols
@@ -1538,9 +1537,9 @@ def draw_chart(chart_data, layout_data, include_panels=True, include_summary=Tru
 
     # Calculate canvas dimensions
     if include_panels:
-        canvas_w = BODYGRAPH_W + (PANEL_SPACING * 2) + (PANEL_WIDTH * 2)
+        canvas_w = BODYGRAPH_W + (PANEL_WIDTH * 2)
         # Centering correction: bodygraph geometry is slightly left of center in layout_data
-        bodygraph_offset_x = PANEL_WIDTH + PANEL_SPACING + 2.75
+        bodygraph_offset_x = PANEL_WIDTH + 2.75
     else:
         canvas_w = BODYGRAPH_W
         bodygraph_offset_x = 0
