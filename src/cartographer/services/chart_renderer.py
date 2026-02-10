@@ -1556,10 +1556,10 @@ def draw_chart(chart_data, layout_data, include_panels=True, include_summary=Tru
     ax.set_ylim(canvas_h, 0)
     ax.axis('off')
 
-    # Background - transparent for PNG, allows compositing
-    fig.patch.set_facecolor('none')
-    ax.set_facecolor('none')
-    # Note: draw_background_gradient() removed for transparency
+    # Background - dark gray for dark mode (matches macOS dark appearance)
+    bg_color = '#1e1e1e' if dark_mode else 'white'
+    fig.patch.set_facecolor(bg_color)
+    ax.set_facecolor(bg_color)
 
     # Side panels
     if include_panels:
