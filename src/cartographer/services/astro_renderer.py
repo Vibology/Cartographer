@@ -215,6 +215,94 @@ def _improve_typography(svg_content: str) -> str:
 
     return svg_content
 
+
+def _build_portrait_chart(svg_content: str) -> str:
+    """Build portrait chart with only essential elements using regex extraction.
+
+    Phase 1: Extract and position only:
+    1. Title (centered at x=310)
+    2. Zodiacal information (upper left at 20,35)
+    3. Location metadata (upper right at 330,35)
+    4. Moon phase graphic (left at 20,135)
+    5. Wheel (centered at 70,140)
+    """
+    # Extract style section
+    style_match = re.search(r'(<style[^>]*>.*?</style>)', svg_content, re.DOTALL)
+    style_section = style_match.group(1) if style_match else ''
+
+    # Extract defs section (contains planet/zodiac symbols)
+    defs_match = re.search(r'(<defs[^>]*>.*?</defs>)', svg_content, re.DOTALL)
+    defs_section = defs_match.group(1) if defs_match else ''
+
+    # 1. Extract title text
+    title_match = re.search(r"<text[^>]*kr:node='Chart_Title'[^>]*>([^<]+)</text>", svg_content)
+    title_text = title_match.group(1) if title_match else 'Birth Chart'
+
+    # 2. Extract zodiacal information group (Bottom_Left_Text)
+    zodiac_match = re.search(
+        r"<g kr:node='Bottom_Left_Text'[^>]*>(.*?)</g>",
+        svg_content,
+        re.DOTALL
+    )
+    zodiac_content = zodiac_match.group(1) if zodiac_match else ''
+
+    # 3. Extract location metadata group (Top_Left_Text)
+    location_match = re.search(
+        r"<g kr:node='Top_Left_Text'[^>]*>(.*?)</g>",
+        svg_content,
+        re.DOTALL
+    )
+    location_content = location_match.group(1) if location_match else ''
+
+    # 4. Extract moon phase graphic (Lunar_Phase)
+    moon_match = re.search(
+        r"<g kr:node='Lunar_Phase'[^>]*>(.*?)</g>",
+        svg_content,
+        re.DOTALL
+    )
+    moon_content = moon_match.group(1) if moon_match else ''
+
+    # 5. Extract wheel (Full_Wheel) - this is complex, need to get all nested content
+    wheel_match = re.search(
+        r"<g kr:node='Full_Wheel'[^>]*>(.*?)</g>\s*<g kr:node='Houses_And_Planets_Grid'",
+        svg_content,
+        re.DOTALL
+    )
+    wheel_content = wheel_match.group(1) if wheel_match else ''
+
+    # Build new portrait SVG
+    portrait_svg = f"""<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:kr='https://www.kerykeion.net/'
+     width='620' height='920' viewBox='0 0 620 920'>
+    <title>Natal Chart - Portrait</title>
+
+    {style_section}
+    {defs_section}
+
+    <!-- Title (centered) -->
+    <text kr:node='Chart_Title' x='310' y='22' text-anchor='middle' style='fill: var(--kerykeion-chart-color-paper-0); font-size: 28px; font-weight: 600'>{title_text}</text>
+
+    <!-- Zodiacal Information (upper left) -->
+    <g kr:node='Bottom_Left_Text' transform='translate(20,35)'>
+{zodiac_content}    </g>
+
+    <!-- Location Metadata (upper right) -->
+    <g kr:node='Top_Left_Text' transform='translate(330,35)'>
+{location_content}    </g>
+
+    <!-- Moon Phase Graphic (left side) -->
+    <g kr:node='Lunar_Phase' transform='translate(20,135)'>
+{moon_content}    </g>
+
+    <!-- Wheel (centered) -->
+    <g kr:node='Full_Wheel' transform='translate(70,140)'>
+{wheel_content}    </g>
+
+</svg>"""
+
+    return portrait_svg
+
 def render_natal_chart(
     name: str,
     year: int,
@@ -288,7 +376,7 @@ def render_natal_chart(
     chart = KerykeionChartSVG(subject, chart_type="Natal")
     svg_content = chart.makeTemplate()
 
-    # Apply visual enhancements
+    # Apply visual enhancements (landscape format)
     svg_content = _fix_viewbox_clipping(svg_content)      # Fix degree marker clipping
     svg_content = _enhance_colors(svg_content)             # Vibrant color palette
     svg_content = _inject_font_family(svg_content)         # SF Pro typography
@@ -296,6 +384,7 @@ def render_natal_chart(
     svg_content = _fix_cusp_alignment(svg_content)         # Left-justify cusps
     svg_content = _adjust_planet_grid_spacing(svg_content) # Prevent overlap
     svg_content = _combine_location_line(svg_content)      # Single-line location
+    # Note: Portrait conversion handled by portrait_builder.py in generate_chart_visuals.py
 
     if output_format == "svg":
         return svg_content.encode('utf-8'), "image/svg+xml"
